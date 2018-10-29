@@ -6,3 +6,27 @@
 
 #IncludeRegexTransform: 
 
+/home/ruslan/tp/CppProject/src/client/main.cpp
+iostream
+-
+stdexcept
+-
+memory
+-
+errno.h
+-
+string.h
+-
+socket.h
+/home/ruslan/tp/CppProject/src/client/socket.h
+
+/home/ruslan/tp/CppProject/src/client/socket.h
+string
+-
+unistd.h
+-
+memory
+-
+functional
+-
+
