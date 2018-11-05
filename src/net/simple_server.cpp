@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <thread>
-#include "../common/socket.hpp"
+#include "socket.hpp"
 
 void client_work(std::shared_ptr<Socket> client)
 {
@@ -18,14 +18,14 @@ void client_work(std::shared_ptr<Socket> client)
     }
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) /// запуск сервера
 {
-    if (argc != 2)
+    if (argc != 2) /// проверка количества аргументов
     {
         std::cerr << "usage: " << argv[0] << " port" << std::endl;
         return 0;
     }
-    int port = std::stoi(std::string(argv[1]));
+    int port = std::stoi(std::string(argv[1])); ///Извлекает знаковое целое число из строки str.
 
     try
     {
