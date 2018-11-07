@@ -1,4 +1,4 @@
-#include <GameController.h>
+#include <../GameController.h>
 #include <Player.h>
 #include <gtest/gtest.h>
 

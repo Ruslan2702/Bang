@@ -42,6 +42,10 @@ endif()
 
 add_executable(server src/net/simple_server.cpp src/net/socket.cpp src/net/socket.hpp)
 
-add_executable(tests src/logic/tests/SimpleTests_01.cpp)
+#add_executable(tests src/logic/tests/SimpleTests_01.cpp)
+#target_link_libraries(tests gtest_main)
+
+add_executable(tests src/game_controller/tests/test.cpp src/game_controller/GameController.h)
 target_link_libraries(tests gtest_main)
+
 
