@@ -40,4 +40,4 @@ endif()
 #target_link_libraries(Bang gtest_main)
 #add_test(NAME example_test COMMAND example)
 
-add_executable(server src/net/simple_server.cpp src/net/socket.cpp src/net/socket.hpp)
+add_executable(server src/net/Server.cpp src/net/socket.cpp src/net/socket.hpp src/net/Server.h)
