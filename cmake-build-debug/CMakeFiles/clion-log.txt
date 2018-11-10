@@ -1,4 +1,15 @@
 /opt/clion-2018.2.5/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/ruslan/tp/CppProject
 -- Configuring done
 -- Generating done
+-- Build files have been written to: /home/ruslan/tp/CppProject/googletest-download
+[ 11%] Performing update step for 'googletest'
+Текущая ветка master уже в актуальном состоянии.
+[ 22%] No configure step for 'googletest'
+[ 33%] No build step for 'googletest'
+[ 44%] No install step for 'googletest'
+[ 55%] No test step for 'googletest'
+[ 66%] Completed 'googletest'
+[100%] Built target googletest
+-- Configuring done
+-- Generating done
 -- Build files have been written to: /home/ruslan/tp/CppProject

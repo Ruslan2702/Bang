@@ -6,37 +6,3 @@
 
 #IncludeRegexTransform: 
 
-/home/ruslan/tp/CppProject/src/net/main_client.cpp
-iostream
--
-
-/home/ruslan/tp/CppProject/src/net/socket.cpp
-iostream
--
-stdexcept
--
-string.h
--
-sys/socket.h
--
-netinet/in.h
--
-arpa/inet.h
--
-netdb.h
--
-fcntl.h
--
-socket.hpp
-/home/ruslan/tp/CppProject/src/net/socket.hpp
-
-/home/ruslan/tp/CppProject/src/net/socket.hpp
-string
--
-unistd.h
--
-memory
--
-functional
--
-

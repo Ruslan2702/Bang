@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/ruslan/tp/CppProject/gtest/src/gtest/googletest/include -I/home/ruslan/tp/CppProject/gtest/src/gtest/googlemock/include 
+CXX_INCLUDES = 
 
