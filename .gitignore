@@ -2,3 +2,5 @@
 Makefile
 bin
 Bang.cbp
+CMakeCache*
+.idea
