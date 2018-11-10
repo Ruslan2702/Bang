@@ -5,3 +5,5 @@ Bang.cbp
 CMakeCache*
 .idea
 gtest
+google*
+lib
