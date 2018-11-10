@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/client.dir/src/net/main_client.cpp.o CMakeFiles/client.dir/src/net/socket.cpp.o  -o bin/client 

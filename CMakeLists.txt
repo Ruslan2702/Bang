@@ -3,41 +3,30 @@ project(Bang)
 
 set(CMAKE_CXX_STANDARD 11)
 
-# Download and unpack googletest at configure time
-configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
-execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
-        RESULT_VARIABLE result
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
-if(result)
-    message(FATAL_ERROR "CMake step for googletest failed: ${result}")
-endif()
-execute_process(COMMAND ${CMAKE_COMMAND} --build .
-        RESULT_VARIABLE result
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download )
-if(result)
-    message(FATAL_ERROR "Build step for googletest failed: ${result}")
-endif()
+set(BINDIR ${CMAKE_SOURCE_DIR}/bin)
+MAKE_DIRECTORY(${BINDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${BINDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${BINDIR})
 
-# Prevent overriding the parent project's compiler/linker
-# settings on Windows
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-
-# Add googletest directly to our build. This defines
-# the gtest and gtest_main targets.
-add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
-        ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
-        EXCLUDE_FROM_ALL)
-
-# The gtest/gtest_main targets carry header search path
-# dependencies automatically when using CMake 2.8.11 or
-# later. Otherwise we have to add them here ourselves.
-if (CMAKE_VERSION VERSION_LESS 2.8.11)
-    include_directories("${gtest_SOURCE_DIR}/include")
-endif()
-
-# Now simply link against gtest or gtest_main as needed. Eg
-#add_executable(Bang main.cpp)
-#target_link_libraries(Bang gtest_main)
-#add_test(NAME example_test COMMAND example)
+include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
+ExternalProject_Add(
+        gtest
+        URL https://github.com/google/googletest/archive/master.zip
+        PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gtest
+        # Disable install step
+        INSTALL_COMMAND ""
+)
+ExternalProject_Get_Property(gtest source_dir binary_dir)
+add_library(libgtest IMPORTED STATIC GLOBAL)
+add_dependencies(libgtest gtest)
+set_target_properties(libgtest PROPERTIES "IMPORTED_LOCATION" "${binary_dir}/googlemock/gtest/libgtest.a" "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
+        )
+add_library(libgmock IMPORTED STATIC GLOBAL)
+add_dependencies(libgmock gtest)
+set_target_properties(libgmock PROPERTIES "IMPORTED_LOCATION" "${binary_dir}/googlemock/libgmock.a" "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
+        )
+include_directories("${source_dir}/googletest/include" "${source_dir}/googlemock/include")
 
 add_executable(server src/net/simple_server.cpp src/net/socket.cpp src/net/socket.hpp)
+add_executable(client src/net/main_client.cpp src/net/socket.cpp src/net/socket.hpp)
+

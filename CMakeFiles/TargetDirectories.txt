@@ -1,0 +1,5 @@
+/home/ruslan/tp/CppProject/CMakeFiles/rebuild_cache.dir
+/home/ruslan/tp/CppProject/CMakeFiles/gtest.dir
+/home/ruslan/tp/CppProject/CMakeFiles/server.dir
+/home/ruslan/tp/CppProject/CMakeFiles/client.dir
+/home/ruslan/tp/CppProject/CMakeFiles/edit_cache.dir
