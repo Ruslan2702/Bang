@@ -7,3 +7,5 @@ CMakeCache*
 gtest
 google*
 lib
+CMakeFiles
+cmake*

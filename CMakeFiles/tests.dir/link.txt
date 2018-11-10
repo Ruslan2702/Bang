@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/tests.dir/tests/first_test.cpp.o  -o bin/tests lib/libgtest_maind.a lib/libgtestd.a -pthread 

@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/server.dir/src/net/simple_server.cpp.o CMakeFiles/server.dir/src/net/socket.cpp.o  -o server 
