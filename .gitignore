@@ -1,1 +1,11 @@
 *.out
+Makefile
+bin
+Bang.cbp
+CMakeCache*
+.idea
+gtest
+google*
+lib
+CMakeFiles
+cmake*

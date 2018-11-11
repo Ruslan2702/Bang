@@ -2,6 +2,12 @@ cmake_minimum_required(VERSION 3.10)
 project(Bang)
 
 set(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(BINDIR ${CMAKE_SOURCE_DIR}/bin)
+MAKE_DIRECTORY(${BINDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${BINDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${BINDIR})
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
@@ -36,8 +42,8 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
-#add_executable(Bang main.cpp)
-#target_link_libraries(Bang gtest_main)
-#add_test(NAME example_test COMMAND example)
+add_executable(tests tests/first_test.cpp)
+target_link_libraries(tests gtest_main)
 
 add_executable(server src/net/simple_server.cpp src/net/socket.cpp src/net/socket.hpp)
+add_executable(client src/net/main_client.cpp src/net/socket.cpp src/net/socket.hpp)

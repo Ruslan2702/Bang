@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <thread>
-#include "../common/socket.hpp"
+#include "socket.hpp"
 
 void client_work(std::shared_ptr<Socket> client)
 {
@@ -20,28 +20,29 @@ void client_work(std::shared_ptr<Socket> client)
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2)
-    {
-        std::cerr << "usage: " << argv[0] << " port" << std::endl;
-        return 0;
-    }
-    int port = std::stoi(std::string(argv[1]));
-
-    try
-    {
-        Socket s;
-        s.createServerSocket(port, 1);
-
-        while(true)
-        {
-            std::shared_ptr<Socket> client = s.accept();
-            client_work(client);
-        }
-    }
-    catch(const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+//    if (argc != 2)
+//    {
+//        std::cerr << "usage: " << argv[0] << " port" << std::endl;
+//        return 0;
+//    }
+//    int port = std::stoi(std::string(argv[1]));
+//
+//    try
+//    {
+//        Socket s;
+//        s.createServerSocket(port, 1);
+//
+//        while(true)
+//        {
+//            std::shared_ptr<Socket> client = s.accept();
+//            client_work(client);
+//        }
+//    }
+//    catch(const std::exception &e)
+//    {
+//        std::cerr << e.what() << std::endl;
+//    }
+    std::cout << "Server works!" << std::endl;
 
     return 0;
 }
