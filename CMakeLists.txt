@@ -49,7 +49,3 @@ add_executable(server src/net/Server.cpp src/net/socket.cpp src/net/socket.hpp s
 add_executable(tests src/game_controller/tests/test.cpp src/game_controller/GameController.h)
 target_link_libraries(tests gtest_main)
 
-
-
-
->>>>>>> feature/tests
