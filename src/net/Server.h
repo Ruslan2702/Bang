@@ -33,7 +33,4 @@ void send_end_msg(std::vector<std::shared_ptr<Socket>> const &clients);
 
 void insert_step_in_db(Step const &step);
 
-
-
-
 #endif //CPPPROJECT_SERVER_H
