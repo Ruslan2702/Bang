@@ -45,3 +45,4 @@ add_executable(server src/net/Server.cpp src/net/socket.cpp src/net/socket.hpp s
 
 add_executable(tests src/logic/tests/SimpleTests_01.cpp)
 target_link_libraries(tests gtest)
+
