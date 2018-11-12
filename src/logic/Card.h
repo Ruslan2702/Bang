@@ -10,8 +10,4 @@ struct Card {
     std::string description;
 };
 
-struct GunCard :  public Card {
-    int range;
-};
-
 #endif //BANG_CARD_H
