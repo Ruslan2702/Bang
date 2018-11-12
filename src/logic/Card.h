@@ -5,10 +5,13 @@
 #ifndef BANG_CARD_H
 #define BANG_CARD_H
 
-class Card {
-public:
+struct Card {
     std::string name;
     std::string description;
+};
+
+struct GunCard :  public Card {
+    int range;
 };
 
 #endif //BANG_CARD_H

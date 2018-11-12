@@ -6,15 +6,16 @@
 #define BANG_GAMESITUATION_H
 
 #include <vector>
+#include "Card.h"
+#include "Gun.h"
 
-struct GameSituation {
-    std::vector<std::string> cards_in_hand;
-//    InfoAboutPlayes info;
-//    Player* current_player;
-//    Move last_move;
-    bool is_end;
-    int game_id;
-//    CardsFrontPlayes cards_fromt_player;
+struct PlayerInfo {
+    std::vector<Card> cards_in_hand;
+    int HP;
+    std::string role;
+    std::string name;
+    int range = 1;
+    bool is_dead;
 };
 
 
