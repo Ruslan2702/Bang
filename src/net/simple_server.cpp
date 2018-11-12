@@ -18,31 +18,30 @@ void client_work(std::shared_ptr<Socket> client)
     }
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) /// запуск сервера
 {
-//    if (argc != 2)
-//    {
-//        std::cerr << "usage: " << argv[0] << " port" << std::endl;
-//        return 0;
-//    }
-//    int port = std::stoi(std::string(argv[1]));
-//
-//    try
-//    {
-//        Socket s;
-//        s.createServerSocket(port, 1);
-//
-//        while(true)
-//        {
-//            std::shared_ptr<Socket> client = s.accept();
-//            client_work(client);
-//        }
-//    }
-//    catch(const std::exception &e)
-//    {
-//        std::cerr << e.what() << std::endl;
-//    }
-    std::cout << "Server works!" << std::endl;
+    if (argc != 2) /// проверка количества аргументов
+    {
+        std::cerr << "usage: " << argv[0] << " port" << std::endl;
+        return 0;
+    }
+    int port = std::stoi(std::string(argv[1])); ///Извлекает знаковое целое число из строки str.
+
+    try
+    {
+        Socket s;
+        s.createServerSocket(port, 1);
+
+        while(true)
+        {
+            std::shared_ptr<Socket> client = s.accept();
+            client_work(client);
+        }
+    }
+    catch(const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
 
     return 0;
 }
