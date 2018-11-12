@@ -36,7 +36,7 @@ TEST_F(TestGameState, GameDrawCard) {
   a->addCard(draw);
   b->addCard(volcanic);
   b->layCard(0);
-  ASSER_EQ(b->getPermanentCards().size(), 1);
+  ASSERT_EQ(b->getPermanentCards().size(), 1);
   ASSERT_EQ(a->getCards().size(), 1);
   ASSERT_EQ(game.playCard(a, 0, 1, 0), Game::SUCCESS);
   ASSERT_EQ(b->getPermanentCards().size(), 0);
