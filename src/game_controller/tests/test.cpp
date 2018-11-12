@@ -10,8 +10,8 @@
 //4. Помошник шерифа — 1шт
 class TestGameState : public ::testing::Test {
  public:
-  TestCard() { /* init protected members here */ }
-  ~TestCard() { /* free protected members here */ }
+  TestGameState() { /* init protected members here */ }
+  ~TestGameState() { /* free protected members here */ }
   void SetUp() { /* called before every test */ }
   void TearDown() { /* called after every test */ }
 
@@ -20,38 +20,38 @@ class TestGameState : public ::testing::Test {
 };
 
 /* Шериф победил — мертвы все бандосы и ренигант. */
-TEST_F(TestGameState, StateSherif) {
-GameState current(1, 0, 0, 1);
-send_state::State result = current.to_game();
-GameState finish = GameState::from_game(result);
-ASSERT_EQ(current, finish);
+TEST_F(TestGameState, SherifWin) {
+  GameSituation current_state(1, 0, 0, 1);
+  bool result = current_state.is_end;
+  GameSituation finish = GameState::from_game(result);
+  ASSERT_EQ(current, finish);
 }
 
-/* Ренигант победил - шериф мертв и мертвы бандиты */
+/* Ренегат победил - шериф мертв и мертвы бандиты */
 TEST_F(TestGameState, StateRenigant) {
-GameState current(0, 1, 0, 1);
-send_state::State result = current.to_game();
-GameState finish = GameState::from_game(result);
-ASSERT_EQ(current, finish);
+  GameState current(0, 1, 0, 1);
+  send_state::State result = current.to_game();
+  GameState finish = GameState::from_game(result);
+  ASSERT_EQ(current, finish);
 }
 
 /* Бандиты победили — мертвы шериф и ренигант. */
 TEST_F(TestGameState, StateBanditos) {
-GameState current(0, 0, 1, 1);
-send_state::State result = current.to_game();
-GameState finish = GameState::from_game(result);
-ASSERT_EQ(current, finish);
+  GameState current(0, 0, 1, 1);
+  send_state::State result = current.to_game();
+  GameState finish = GameState::from_game(result);
+  ASSERT_EQ(current, finish);
 }
 
 /* Никто не победил, игра продолжается */
 TEST_F(TestGameState, StateContinue) {
-GameState current(1, 1, 1, 1);
-send_state::State result = current.to_game();
-GameState finish = GameState::from_game(result);
-ASSERT_EQ(current, finish);
+  GameState current(1, 1, 1, 1);
+  send_state::State result = current.to_game();
+  GameState finish = GameState::from_game(result);
+  ASSERT_EQ(current, finish);
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
