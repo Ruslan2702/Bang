@@ -7,8 +7,7 @@
 
 #include <vector>
 
-class GameSituation {
-public:
+struct GameSituation {
     std::vector<std::string> cards_in_hand;
 //    InfoAboutPlayes info;
 //    Player* current_player;
