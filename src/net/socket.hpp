@@ -1,7 +1,11 @@
+#ifndef BANG_SOCKET_H
+#define BANG_SOCKET_H
+
 #include <string>
 #include <unistd.h>     // close()
 #include <memory>
 #include <functional>
+
 
 
 std::string int2ipv4(uint32_t ip);
@@ -44,3 +48,5 @@ private:
     int m_Sd;
 };
 
+
+#endif //BANG_SOCKET_H

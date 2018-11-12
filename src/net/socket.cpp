@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdexcept>
-
 #include <string.h>
 #include <sys/socket.h> // socket(), AF_INET/PF_INET
 #include <netinet/in.h> // struct sockaddr_in
@@ -83,7 +82,7 @@ void Socket::setReuseAddr(int sd) noexcept(false) {
 void Socket::connect(const std::string &host, int port) noexcept(false) {
     struct sockaddr_in addr = resolve(host.data(), port);
 
-    int sd = socket(/*Protocol Family*/PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    int sd = socket(/*Protocol Family*/AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (sd <= 0)
         throw std::runtime_error("error to create socket: " + std::string(strerror(errno)));
 
@@ -99,7 +98,7 @@ void Socket::connect(const std::string &host, int port) noexcept(false) {
 void Socket::connect(const std::string &host, int port, int timeout) noexcept(false) {
     struct sockaddr_in addr = resolve(host.data(), port);
 
-    int sd = socket(/*Protocol Family*/PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    int sd = socket(/*Protocol Family*/AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (sd <= 0)
         throw std::runtime_error("error to create socket: " + std::string(strerror(errno)));
 
