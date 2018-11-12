@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) /// запуск сервера
     try
     {
         Socket s;
-        s.createServerSocket(port, 1); /// не уверен, то 1
+        s.createServerSocket(port, 1); /// не уверен, что 1
 
         std::vector<std::shared_ptr<Socket>> clients;
 
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) /// запуск сервера
 
         std::cout << "THERE ARE " << MAX_CONNECT << " CON" << std::endl;
 
-        for (auto client : clients) client->send("HELLOW");
+        send_hellow_msg(clients);
 
         while(true)
         {
