@@ -9,7 +9,7 @@
 #include <vector>
 
 struct GameSituation {
-//    std::vector<std::shared_ptr<PlayerInfo>> player_list;
+    std::vector<std::shared_ptr<struct PlayerInfo>> player_list;
     bool is_end;
     bool is_sherif;
     bool is_renigan;
