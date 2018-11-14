@@ -183,7 +183,7 @@ namespace {
 
 }
 
-std::string Socket::recv() throw (std::exception)
+std::string Socket::recv() noexcept(false)
 {
     char buf[256]; /// задали размер буфера
 
@@ -235,7 +235,7 @@ bool Socket::hasData() noexcept(false) {
     return false;
 }
 
-void Socket::createServerSocket(uint32_t port, uint32_t listen_queue_size) throw (std::exception)
+void Socket::createServerSocket(uint32_t port, uint32_t listen_queue_size) noexcept(false)
 {
     int sd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP); ///прописываем семейство сокета
     if (sd <= 0) /// чекаем успех

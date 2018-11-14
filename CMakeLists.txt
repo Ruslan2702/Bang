@@ -46,6 +46,5 @@ add_executable(tests tests/first_test.cpp)
 target_link_libraries(tests gtest_main)
 
 add_executable(server src/net/Server.cpp src/net/socket.cpp src/net/socket.hpp src/net/Server.h)
-
-add_executable(tests src/logic/tests/SimpleTests_01.cpp)
+add_executable(client src/net/Client.cpp src/net/main_client.cpp src/net/socket.cpp)
 target_link_libraries(tests gtest_main)

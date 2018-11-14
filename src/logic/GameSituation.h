@@ -7,6 +7,7 @@
 
 #include "PlayerInfo.h"
 #include <vector>
+#include <memory>
 
 struct GameSituation {
     std::vector<std::shared_ptr<PlayerInfo>> player_list;

@@ -19,7 +19,7 @@ void Client::JoinTheGame() {
         std::cerr << "ERROR: " << ex.what() << std::endl;
     }
 
-    socket.setNonBlocked(true);
+//    socket.setNonBlocked(true);
 }
 
 std::string Client::GetGameSituation() {

@@ -2,14 +2,15 @@
 // Created by Андрей on 07.11.18.
 //
 
-#ifndef BANG_GAMESITUATION_H
-#define BANG_GAMESITUATION_H
+#ifndef BANG_PLAYERINFO_H
+#define BANG_PLAYERINFO_H
 
 #include <vector>
+#include <string>
 #include "Card.h"
 #include "Gun.h"
 
-struct PlayerInfo {
+class PlayerInfo {
     std::vector<Card> cards_in_hand;
     int HP;
     std::string role;
@@ -19,4 +20,4 @@ struct PlayerInfo {
 };
 
 
-#endif //BANG_GAMESITUATION_H
+#endif //BANG_PLAYERINFO_H
