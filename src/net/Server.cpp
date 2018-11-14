@@ -10,62 +10,62 @@
 
 
 int MAX_CONNECT = 2;
+int TIME_TO_MOVE_SEC = 30;
+int TIME_TO_MOVE_MSEC = 0;
 
-void send_hellow_msg(std::vector<std::shared_ptr<Socket>> const &clients) {
+Server::Server(std::string const  &port, int const &queue_size) noexcept(false) {
+    server_socket = Socket();
+    server_socket.createServerSocket(std::stoi(port), queue_size);
+}
 
-    std::string hellow_msg = "HELLOW";
+void Server::send_hellow_msg() {
+
+    std::string hellow_msg = "HELLOW\n";
 
     for (auto client : clients) {
         client->send(hellow_msg);
     }
 }
 
-//void client_work(std::shared_ptr<Socket> client)
-//{
-//    client->setRcvTimeout(/*sec*/30, /*microsec*/0);
-//    while (true) try
-//        {
-//            std::string line = client->recv();
-//            client->send("echo: " + line + "\n");
-//        }
-//        catch(const std::exception &e)
-//        {
-//            std::cerr << "exception: " << e.what() << std::endl;
-//            return;
-//        }
-//}
+void Server::client_work(std::shared_ptr<Socket> client) {
+
+}
+
+void Server::get_players(int MAX_CONNECT) {
+    for (int i = 0; i < MAX_CONNECT; ++i) {
+            std::shared_ptr<Socket> client = server_socket.accept();
+            clients.push_back(client);
+        }
+}
+
+void Server::send_everybode_step(std::string step) noexcept(false) {
+    for (auto client : clients) client->send(step + "\n");
+}
+
+std::string Server::get_step(int index_client) { /// Step
+    clients[index_client]->setRcvTimeout(TIME_TO_MOVE_SEC, TIME_TO_MOVE_MSEC);
+
+    std::string line = clients[index_client]->recv();
+//    std::cout << line << std::endl;
+    return line;
+}
 
 int main(int argc, char *argv[]) /// запуск сервера
 {
-//    if (argc != 2) /// проверка количества аргументов
-//    {
-//        std::cerr << "usage: " << argv[0] << " port" << std::endl;
-//        return 0;
-//    }
-
-//    int port = std::stoi(std::string(argv[1])); ///Извлекает знаковое целое число из строки str.
-
-    int port = std::stoi(std::string("5555"));
-
     try
     {
-        Socket s;
-        s.createServerSocket(port, 1); /// не уверен, что 1
-
-        std::vector<std::shared_ptr<Socket>> clients;
-
-        for (int i = 0; i < MAX_CONNECT; ++i) {
-            std::shared_ptr<Socket> client = s.accept();
-            clients.push_back(client);
-        }
+        Server server("5555", MAX_CONNECT);
+        server.get_players(MAX_CONNECT);
+        server.send_hellow_msg();
 
         std::cout << "THERE ARE " << MAX_CONNECT << " CON" << std::endl;
 
-        send_hellow_msg(clients);
-
         while(true)
         {
-
+            for (int i = 0; i < MAX_CONNECT; ++i) {
+                std::string step = server.get_step(i);
+                server.send_everybode_step(step);
+            }
         }
     }
     catch(const std::exception &e)
