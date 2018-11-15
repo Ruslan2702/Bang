@@ -5,4 +5,8 @@
 #ifndef BANG_STEPPARSER_H
 #define BANG_STEPPARSER_H
 
+class StepParser {
+
+};
+
 #endif //BANG_STEPPARSER_H

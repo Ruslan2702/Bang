@@ -12,6 +12,7 @@
 #include <vector>
 #include "../logic/GameSituation.h"
 #include "../logic/Step.h"
+#include "../logic/GameManager.h"
 
 const int END_GAME = -1;
 
@@ -23,16 +24,15 @@ public:
 
     void client_work(std::shared_ptr<Socket> client);
     void send_hellow_msg();
-    void send_current_situation(GameSituation const &curren_stuation,
-                                std::vector<std::shared_ptr<Socket>> const &clients
-    );
+    void send_current_situation(GameSituation const &curren_stuation);
     void get_players(int MAX_CONNECT) noexcept(false);
-    std::string get_step(int index_client) noexcept(false); /// Step
+    std::string get_step(int index_client) noexcept(false);
     void send_everybode_step(std::string step) noexcept(false);
     void new_cards_for_user(GameSituation &curren_stuation);
-    int upgrade_situation(GameSituation &curren_stuation, Step const &step);  /// -1, если игра закончилась
-    void send_end_msg(std::vector<std::shared_ptr<Socket>> const &clients) noexcept(false);
-    void insert_step_in_db(Step const &step) noexcept(false);
+    std::string upgrade_situation(Step const &step, GameManager &game_manager,
+                                  GameSituation &current_sitution);  /// если конец игры - то слать имя победителя
+    void send_end_msg() noexcept(false);
+    void insert_step_in_db(std::string const &step) noexcept(false);
 
 private:
     Socket server_socket;
