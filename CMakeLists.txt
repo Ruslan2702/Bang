@@ -8,6 +8,15 @@ set(BINDIR ${CMAKE_SOURCE_DIR}/bin)
 MAKE_DIRECTORY(${BINDIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${BINDIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${BINDIR})
+set(CMAKE_CXX_FLAGS "-lncurses")
+
+
+
+#set(INSTALL_NCURSES ${CMAKE_CURRENT_BINARY_DIR} )
+#add_custom_command(OUTPUT ${INSTALL_NCURSES} COMMAND sudo apt-get install libncurses5-dev libncursesw5-dev)
+#add_custom_target("install_lib")
+#add_custom_command(TARGET "deploy" POST_BUILD <some command>)
+
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
@@ -46,5 +55,9 @@ add_executable(tests tests/first_test.cpp)
 target_link_libraries(tests gtest_main)
 
 add_executable(server src/net/Server.cpp src/net/socket.cpp src/net/socket.hpp src/net/Server.h)
-add_executable(client src/net/Client.cpp src/net/main_client.cpp src/net/socket.cpp)
+add_executable(client src/net/Client.cpp src/net/main_client.cpp src/net/socket.cpp src/window/Window.cpp ${INSTALL_NCURSES})
+add_custom_command(TARGET client PRE_BUILD COMMAND sudo apt-get install libncurses5-dev libncursesw5-dev)
+
+target_link_libraries(client ncurses)
 target_link_libraries(tests gtest_main)
+
