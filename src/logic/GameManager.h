@@ -5,9 +5,9 @@
 
 class GameManager {
 public:
-    void bang(int from_player, int to_player, GameSituation& situation);
-    bool can_bang(int from_player, int to_player, GameSituation& situation); /// расчет ренджи
-    void drink_beer(int player_id, GameSituation& situation); /// пиво на себя полюбому
+    void bang(int from_player, int to_player);
+    bool can_bang(int from_player, int to_player); /// расчет ренджи
+    void drink_beer(int player_id); /// пиво на себя полюбому
     bool is_miss();
     GameSituation get_situation();
 

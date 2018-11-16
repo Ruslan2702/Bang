@@ -18,14 +18,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb5e111f-c203-4a60-9847-18c769190c8a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/logic/tests/SimpleTests_04.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/tests/cmake-build-debug/googletest-src" beforeDir="false" afterPath="$PROJECT_DIR$/include/tests/cmake-build-debug/googletest-src" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic/GameManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/GameManager.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic/GameManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/GameManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/GameSituation.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/GameSituation.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/PlayerInfo.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/PlayerInfo.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/Client.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/Client.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/Server.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/Server.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/tests/SimpleTests_04.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/tests/SimpleTests_04.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,8 +47,8 @@
       <file leaf-file-name="PlayerInfo.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/logic/PlayerInfo.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="11" column="17" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="17" />
+            <state relative-caret-position="150">
+              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -59,8 +56,8 @@
       <file leaf-file-name="GameManager.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/logic/GameManager.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="225">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -68,8 +65,8 @@
       <file leaf-file-name="GameManager.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/logic/GameManager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="120">
+              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -77,10 +74,22 @@
       <file leaf-file-name="SimpleTests_04.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/logic/tests/SimpleTests_04.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="54" column="2" lean-forward="true" selection-start-line="54" selection-start-column="2" selection-end-line="54" selection-end-column="2" />
+            <state relative-caret-position="193">
+              <caret line="38" column="50" lean-forward="true" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
               <folding>
                 <element signature="e#41#65#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="simple_server.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/simple_server.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="10" column="42" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -89,20 +98,11 @@
       <file leaf-file-name="Server.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/Server.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1418">
-              <caret line="95" column="45" selection-start-line="95" selection-start-column="45" selection-end-line="95" selection-end-column="45" />
+            <state relative-caret-position="1523">
+              <caret line="102" column="30" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
               <folding>
                 <element signature="e#41#60#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimpleTests_02.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/logic/tests/SimpleTests_02.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -139,10 +139,10 @@
         <option value="$PROJECT_DIR$/src/net/Server.h" />
         <option value="$PROJECT_DIR$/src/logic/GameSituation.h" />
         <option value="$PROJECT_DIR$/src/logic/PlayerInfo.h" />
-        <option value="$PROJECT_DIR$/src/logic/GameManager.cpp" />
-        <option value="$PROJECT_DIR$/src/logic/GameManager.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/logic/tests/SimpleTests_04.cpp" />
+        <option value="$PROJECT_DIR$/src/logic/GameManager.cpp" />
+        <option value="$PROJECT_DIR$/src/logic/GameManager.h" />
       </list>
     </option>
   </component>
@@ -282,15 +282,15 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45059000" />
+    <option name="totallyTimeSpent" value="45237000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="735" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.3291536" />
+      <window_info anchor="bottom" id="Messages" order="7" visible="true" weight="0.20219436" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.32965517" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="7" />
@@ -301,30 +301,41 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="CMake" order="7" weight="0.32965517" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3291536" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32965517" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32965517" />
+      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.3291536" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.32965517" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32965517" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32965517" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32965517" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32965517" />
       <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3291536" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="CMake" order="11" weight="0.32965517" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32965517" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32965517" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -544,16 +555,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/simple_server.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="10" column="42" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/parsers/StepParser.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -607,8 +608,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/Server.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1418">
-          <caret line="95" column="45" selection-start-line="95" selection-start-column="45" selection-end-line="95" selection-end-column="45" />
+        <state relative-caret-position="1523">
+          <caret line="102" column="30" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
           <folding>
             <element signature="e#41#60#0" expanded="true" />
           </folding>
@@ -617,29 +618,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/logic/PlayerInfo.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="17" />
+        <state relative-caret-position="150">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/simple_server.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="10" column="42" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/logic/GameManager.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="225">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/logic/GameManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="120">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/logic/tests/SimpleTests_04.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="54" column="2" lean-forward="true" selection-start-line="54" selection-start-column="2" selection-end-line="54" selection-end-column="2" />
+        <state relative-caret-position="193">
+          <caret line="38" column="50" lean-forward="true" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
           <folding>
             <element signature="e#41#65#0" expanded="true" />
           </folding>

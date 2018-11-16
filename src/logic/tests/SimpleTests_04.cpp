@@ -58,7 +58,7 @@ TEST_F(TestGameSituation, simple_beer_01) {
     int from_player = 0;
 
     int before_HP = manager.current_situation.player_list[from_player]->HP;
-//    manager->drink_beer(from_player, );
+    manager.drink_beer(from_player, );
 }
 
 
