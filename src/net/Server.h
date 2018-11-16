@@ -31,6 +31,7 @@ public:
     void new_cards_for_user(GameSituation &curren_stuation);
     std::string upgrade_situation(Step const &step, GameManager &game_manager,
                                   GameSituation &current_sitution);  /// если конец игры - то слать имя победителя
+
     void send_end_msg() noexcept(false);
     void insert_step_in_db(std::string const &step) noexcept(false);
 

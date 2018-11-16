@@ -10,11 +10,11 @@
 
 struct GameSituation {
     std::vector<std::shared_ptr<PlayerInfo>> player_list;
-    bool is_end;
-    bool is_sherif;
-    bool is_renigan;
-    int count_bandits;
-    int count_sherifs_helpers;
+    bool is_end = 0;
+    bool is_sherif = 1;
+    bool is_renigan = 1;
+    int count_bandits = 3;
+    int count_sherifs_helpers = 1;
 };
 
 #endif //BANG_GAMESITUATION_H

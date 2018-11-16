@@ -44,6 +44,7 @@ endif()
 add_executable(server
         src/net/Server.cpp
         src/net/socket.cpp
+        src/logic/GameManager.cpp
         )
 
 add_executable(client
@@ -52,9 +53,10 @@ add_executable(client
         )
 
 add_executable(tests
-        src/logic/tests/SimpleTests_01.cpp
-        src/logic/tests/SimpleTests_02.cpp
-        src/logic/tests/SimpleTests_03.cpp
+#        src/logic/tests/SimpleTests_01.cpp
+#        src/logic/tests/SimpleTests_02.cpp
+#        src/logic/tests/SimpleTests_03.cpp
+        src/logic/tests/SimpleTests_04.cpp
         )
 
 target_link_libraries(tests gtest)

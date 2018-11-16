@@ -1,16 +1,24 @@
+#include "GameSituation.h
 #include "GameManager.h"
 
-cards* get_cards() {
-    cards *tmpCards = new cards[COUNT_CARDS_IN_HAND];
-    return tmpCards;
+void GameManager::bang(int from_player, int to_player, GameSituation &situation) {
+    return;
 }
-cards* create_start_game_situation() {
-    cards *tmpCards = new cards[COUNT_CARDS_IN_HAND];
-    return tmpCards;
+
+bool GameManager::can_bang(int from_player, int to_player, GameSituation &situation) {
+    return true; /// dummy
 }
-cards* change_game_situation(cards* GameStep) {
-    return GameStep;
+
+void GameManager::drink_beer(int player_id, GameSituation &situation) {
+    return;
 }
-cards* take_users_situation(cards* user) {
-    return user;
+
+GameSituation GameManager::get_situation() {
+    GameSituation dummy;
+    return dummy;
 }
+
+bool GameManager::is_miss() {
+    return false;
+}
+

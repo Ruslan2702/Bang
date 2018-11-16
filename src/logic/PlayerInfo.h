@@ -15,7 +15,7 @@ struct PlayerInfo {
     std::string role;
     std::string name;
     int range = 1;
-    bool is_dead;
+    bool is_dead = 0;
 };
 
 

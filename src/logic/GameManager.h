@@ -2,22 +2,16 @@
 #define GAME_MANAGER_GAMEMANAGER_H
 
 #include <iostream>
-#define COUNT_CARDS_IN_HAND 6
-struct cards {
-    std::vector<int>*role;
-    std::vector<int>*card;
-};
 
 class GameManager {
-private:
-    /*          */
 public:
-    cards* get_cards() {}
-    cards* create_start_game_situation() {}
-    cards* change_game_situation(cards* GameStep) {}
-    cards* take_users_situation(cards* user) {}
-protected:
-    /*          */
+    void bang(int from_player, int to_player, GameSituation& situation);
+    bool can_bang(int from_player, int to_player, GameSituation& situation); /// расчет ренджи
+    void drink_beer(int player_id, GameSituation& situation); /// пиво на себя полюбому
+    bool is_miss();
+    GameSituation get_situation();
+
+    GameSituation current_situation;
 };
 
 #endif //GAME_MANAGER_GAMEMANAGER_H

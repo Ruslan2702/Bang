@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdexcept>
-#include <memory>               // shared_ptr
+#include <memory>
 #include <errno.h>
 #include <string.h>
 #include "socket.hpp"
