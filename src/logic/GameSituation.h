@@ -16,6 +16,7 @@ struct GameSituation {
     bool is_renigan = 1;
     int count_bandits = 3;
     int count_sherifs_helpers = 1;
+    std::string WINNER = "";
 };
 
 #endif //BANG_GAMESITUATION_H

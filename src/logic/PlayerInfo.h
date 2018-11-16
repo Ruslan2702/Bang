@@ -12,7 +12,7 @@
 struct PlayerInfo {
     std::vector<Card> cards_in_hand;
     int HP;
-    int MAX_XP = 4;
+    int MAX_XP;
     std::string role;
     std::string name;
     int range = 1;
