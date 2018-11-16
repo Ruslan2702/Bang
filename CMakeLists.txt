@@ -56,7 +56,15 @@ target_link_libraries(tests gtest_main)
 
 add_executable(server src/net/Server.cpp src/net/socket.cpp src/net/socket.hpp src/net/Server.h)
 add_executable(client src/net/Client.cpp src/net/main_client.cpp src/net/socket.cpp src/window/Window.cpp ${INSTALL_NCURSES})
-add_custom_command(TARGET client PRE_BUILD COMMAND sudo apt-get install libncurses5-dev libncursesw5-dev)
+
+if(UNIX AND NOT APPLE)
+    add_custom_command(TARGET client PRE_BUILD COMMAND sudo apt-get install libncurses5-dev libncursesw5-dev)
+endif(UNIX AND NOT APPLE)
+
+if(APPLE)
+    add_custom_command(TARGET client PRE_BUILD COMMAND brew install libncurses5-dev libncursesw5-dev)
+endif()
+
 
 target_link_libraries(client ncurses)
 target_link_libraries(tests gtest_main)
