@@ -7,11 +7,12 @@
 
 #include <vector>
 #include "Card.h"
-#include "Gun.h"
+#include <iostream>
 
 struct PlayerInfo {
     std::vector<Card> cards_in_hand;
     int HP;
+    int MAX_XP = 4;
     std::string role;
     std::string name;
     int range = 1;

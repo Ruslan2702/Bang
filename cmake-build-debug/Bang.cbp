@@ -426,11 +426,22 @@
 		<Unit filename="/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/cmake-build-debug/googletest-src/googletest/src/gtest_main.cc">
 			<Option target="gtest_main"/>
 		</Unit>
+		<Unit filename="/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/Card.h">
+			<Option target="tests"/>
+		</Unit>
 		<Unit filename="/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/GameManager.cpp">
+			<Option target="tests"/>
 			<Option target="server"/>
 		</Unit>
 		<Unit filename="/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/GameManager.h">
+			<Option target="tests"/>
 			<Option target="server"/>
+		</Unit>
+		<Unit filename="/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/GameSituation.h">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/PlayerInfo.h">
+			<Option target="tests"/>
 		</Unit>
 		<Unit filename="/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/tests/SimpleTests_04.cpp">
 			<Option target="tests"/>

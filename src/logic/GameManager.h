@@ -2,6 +2,7 @@
 #define GAME_MANAGER_GAMEMANAGER_H
 
 #include <iostream>
+#include "GameSituation.h"
 
 class GameManager {
 public:

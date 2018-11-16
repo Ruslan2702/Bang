@@ -1,1 +1,1 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/tests.dir/src/logic/tests/SimpleTests_04.cpp.o  -o tests lib/libgtestd.a 
+/Library/Developer/CommandLineTools/usr/bin/c++  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/tests.dir/src/logic/tests/SimpleTests_04.cpp.o CMakeFiles/tests.dir/src/logic/GameManager.cpp.o  -o tests lib/libgtestd.a 

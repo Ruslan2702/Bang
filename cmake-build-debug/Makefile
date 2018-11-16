@@ -253,6 +253,7 @@ src/logic/GameManager.o: src/logic/GameManager.cpp.o
 
 # target to build an object file
 src/logic/GameManager.cpp.o:
+	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/logic/GameManager.cpp.o
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/logic/GameManager.cpp.o
 .PHONY : src/logic/GameManager.cpp.o
 
@@ -262,6 +263,7 @@ src/logic/GameManager.i: src/logic/GameManager.cpp.i
 
 # target to preprocess a source file
 src/logic/GameManager.cpp.i:
+	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/logic/GameManager.cpp.i
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/logic/GameManager.cpp.i
 .PHONY : src/logic/GameManager.cpp.i
 
@@ -271,6 +273,7 @@ src/logic/GameManager.s: src/logic/GameManager.cpp.s
 
 # target to generate assembly for a file
 src/logic/GameManager.cpp.s:
+	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/logic/GameManager.cpp.s
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/logic/GameManager.cpp.s
 .PHONY : src/logic/GameManager.cpp.s
 

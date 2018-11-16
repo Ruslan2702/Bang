@@ -1,4 +1,4 @@
-#include "GameSituation.h
+#include "GameSituation.h"
 #include "GameManager.h"
 
 void GameManager::bang(int from_player, int to_player) {
@@ -10,7 +10,7 @@ bool GameManager::can_bang(int from_player, int to_player) {
 }
 
 void GameManager::drink_beer(int player_id) {
-    return;
+//    current_situation.player_list[player_id]->HP += 1;
 }
 
 GameSituation GameManager::get_situation() {

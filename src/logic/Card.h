@@ -5,8 +5,10 @@
 #ifndef BANG_CARD_H
 #define BANG_CARD_H
 
+#include <iostream>
+
 struct Card {
-    std::string name;
+    std::string name_card;
     std::string description;
 };
 

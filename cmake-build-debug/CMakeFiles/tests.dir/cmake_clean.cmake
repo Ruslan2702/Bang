@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/tests.dir/src/logic/tests/SimpleTests_04.cpp.o"
+  "CMakeFiles/tests.dir/src/logic/GameManager.cpp.o"
   "tests.pdb"
   "tests"
 )

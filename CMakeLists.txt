@@ -53,10 +53,11 @@ add_executable(client
         )
 
 add_executable(tests
-#        src/logic/tests/SimpleTests_01.cpp
-#        src/logic/tests/SimpleTests_02.cpp
-#        src/logic/tests/SimpleTests_03.cpp
         src/logic/tests/SimpleTests_04.cpp
+        src/logic/GameManager.cpp
+        src/logic/GameSituation.h
+        src/logic/Card.h
+        src/logic/PlayerInfo.h
         )
 
 target_link_libraries(tests gtest)

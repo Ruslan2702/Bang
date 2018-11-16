@@ -7,26 +7,36 @@
 #IncludeRegexTransform: 
 
 /Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/Card.h
+iostream
+-
+
+/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/GameManager.cpp
+GameSituation.h
+/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/GameSituation.h
+GameManager.h
+/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/GameManager.h
 
 /Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/GameManager.h
 iostream
 -
+GameSituation.h
+/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/GameSituation.h
 
 /Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/GameSituation.h
 PlayerInfo.h
 /Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/PlayerInfo.h
 vector
 -
-
-/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/Gun.h
+iostream
+-
 
 /Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/PlayerInfo.h
 vector
 -
 Card.h
 /Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/Card.h
-Gun.h
-/Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/Gun.h
+iostream
+-
 
 /Users/andrey/TECHNOPARK_SYSARC/SEM_01/CppProject/src/logic/Step.h
 Card.h
