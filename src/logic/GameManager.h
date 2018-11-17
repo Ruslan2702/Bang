@@ -16,6 +16,7 @@ public:
     void gun(int id_player); /// + 1 к радиуму поражения
 
     GameSituation current_situation;
+    std::vector<Card> cards;
 };
 
 #endif //GAME_MANAGER_GAMEMANAGER_H
