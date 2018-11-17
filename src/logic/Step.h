@@ -10,7 +10,8 @@
 struct Step {
     std::string action;
     Card card;
-    std::string on_player;
+    int from_player;
+    int to_player;
 };
 
 #endif //BANG_STEP_H

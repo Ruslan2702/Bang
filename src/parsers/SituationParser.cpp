@@ -1,5 +1,10 @@
 #include "SituationParser.h"
 
-void Parse(FILE* situation_text) {
+std::string SituationParser::EncodeStep(GameSituation step) {
+    return ""; /// dummy
+}
 
+GameSituation SituationParser::DecodeStep(std::string) {
+    GameSituation dummy_situation;
+    return dummy_situation; /// dummy
 }
