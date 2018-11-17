@@ -6,8 +6,10 @@
 #define BANG_STEPPARSER_H
 
 #include "../logic/Step.h"
+#include <iostream>
 
 class StepParser {
+public:
     Step DecodeStep(std::string) noexcept(false);
     std::string EncodeStep(Step step) noexcept(false);
 };

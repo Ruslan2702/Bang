@@ -59,5 +59,13 @@ add_executable(tests_situation
         src/logic/Card.h
         src/logic/PlayerInfo.h
         )
-
 target_link_libraries(tests_situation gtest)
+
+add_executable(tests_parsers
+        src/parsers/tests/TestsForParsers.cpp
+        src/parsers/StepParser.cpp
+        src/parsers/SituationParser.cpp
+        src/logic/Card.h
+        src/logic/Step.h
+        )
+target_link_libraries(tests_parsers gtest)

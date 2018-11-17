@@ -6,9 +6,10 @@
 
 Step StepParser::DecodeStep(std::string) {
     Step step;
+    step.action = "[???]";
     return step; /// dummy
 }
 
-Step StepParser::EncodeStep(Step step) {
-
+std::string StepParser::EncodeStep(Step step) {
+    return ""; /// dummy
 }
