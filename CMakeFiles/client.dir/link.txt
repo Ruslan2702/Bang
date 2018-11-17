@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/c++  -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/client.dir/src/net/Client.cpp.o CMakeFiles/client.dir/src/net/socket.cpp.o  -o client 
