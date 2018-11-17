@@ -21,3 +21,4 @@ cmake-build-debug/CMakeFiles/Makefile.cmake
 cmake-build-debug*
 build*
 .idea/codeStyles/Project.xml
+.idea*
