@@ -30,7 +30,7 @@ void Window::HelloMessage(std::string& host, int* port) {
         throw std::runtime_error("Too small terminal window");
     }
 
-    std::ifstream fin("hello_message.txt");
+    std::ifstream fin("/src/window/hello_message.txt");
     std::string buff;
 
     int currentRow = 0;
