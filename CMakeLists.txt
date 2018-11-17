@@ -52,12 +52,12 @@ add_executable(client
         src/net/socket.cpp
         )
 
-add_executable(tests
-        src/logic/tests/SimpleTests_04.cpp
+add_executable(tests_situation
+        src/logic/tests/TestsForGameSituation.cpp
         src/logic/GameManager.cpp
         src/logic/GameSituation.h
         src/logic/Card.h
         src/logic/PlayerInfo.h
         )
 
-target_link_libraries(tests gtest)
+target_link_libraries(tests_situation gtest)

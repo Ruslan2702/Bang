@@ -337,6 +337,26 @@ TEST_F(TestGameSituation, cards_count_02) {
     EXPECT_FALSE(HP >= after_cards_count);
 }
 
+TEST_F(TestGameSituation, cards_count_03) {
+    /// count is TRUE
+    int id_player = 0;
+    EXPECT_TRUE(manager.check_count_cards(id_player));
+}
+
+TEST_F(TestGameSituation, cards_count_04) {
+    /// count is FALSE
+    int id_player = 0;
+    Card dummy_card;
+    dummy_card.name_card = "[MISS]";
+    int BAD_COUNT = 6;
+
+    for (int i = 0; i < BAD_COUNT; ++i) {
+        (*manager.current_situation.player_list[id_player]).cards_in_hand.push_back(dummy_card);
+    }
+
+    EXPECT_FALSE(manager.check_count_cards(id_player));
+}
+
 /*
  * Осталось довесить индекс карт, с корорыми взаимодействуем, чтобы кажждый раз не искать их в колоде
  * то есть почти во все функции с картами нужно совать cards_id! очень важно, а то не заработает
