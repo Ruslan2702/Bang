@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "../logic/GameSituation.h"
+#include "boost/test"
 
 class SituationParser {
 public:
