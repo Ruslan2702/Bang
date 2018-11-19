@@ -112,6 +112,67 @@ TEST(TestsForStepParser, simple_decode_04) {
     EXPECT_TRUE(real_step == expected);
 }
 
+TEST(TestsForStepParser, simple_encode_01) {
+    Card card;
+    card.name_card= "[MISS]";
+
+    Step step;
+    step.action = "[DROP]";
+    step.to_player = 1;
+    step.from_player = 1;
+    step.card = card;
+
+    std::string expected = "<STEP [MISS] [DROP] 1 1 STEP>";
+
+    StepParser parser;
+
+    std::string real_row_step = parser.EncodeStep(step);
+
+    EXPECT_TRUE(expected == real_row_step);
+}
+
+TEST(TestsForStepParser, simple_encode_02) {
+    Card card;
+    card.name_card= "[MISS]";
+
+    Step step;
+    step.action = "[DROP]";
+    step.from_player = 1;
+    step.to_player = 2;
+    step.card = card;
+
+    std::string expected = "<STEP [MISS] [DROP] 1 2 STEP>";
+
+    StepParser parser;
+
+    std::string real_row_step = parser.EncodeStep(step);
+
+    EXPECT_TRUE(expected == real_row_step);
+}
+
+TEST(TestsForStepParser, simple_encode_03) {
+    Card card;
+    card.name_card= "[BEER]";
+
+    Step step;
+    step.action = "[USE]";
+    step.from_player = 1;
+    step.to_player = 2;
+    step.card = card;
+
+    std::string expected = "<STEP [BEER] [USE] 1 2 STEP>";
+
+    StepParser parser;
+
+    std::string real_row_step = parser.EncodeStep(step);
+
+    EXPECT_TRUE(expected == real_row_step);
+}
+
+
+
+
+
 
 /*
  * Тут когда нибудь наверно но скорее всего нет будут тесты для братного превращение
