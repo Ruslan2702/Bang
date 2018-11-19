@@ -1,9 +1,9 @@
 #include <iostream>
 #include <stdexcept>
-#include <memory>               // shared_ptr
+#include <memory>
 #include <errno.h>
 #include <string.h>
-#include "socket.h"
+#include "socket.hpp"
 
 
 int main(int argc, char *argv[]) {

@@ -45,6 +45,7 @@ namespace {
         addr.sin_port = htons(port);
         memcpy(&addr.sin_addr, hp->h_addr, hp->h_length);
 
+
         return addr;
     }
 
@@ -183,8 +184,12 @@ namespace {
 
 }
 
-std::string Socket::recv() noexcept(false) {
-    char buf[256];
+
+std::string Socket::recv() noexcept(false)
+{
+    char buf[256]; /// задали размер буфера
+
+    /// n - число считаных байт
 #ifdef __APPLE__
     // mac os x don't defines MSG_NOSIGNAL
     int n = ::recv(m_Sd, buf, sizeof(buf), 0);
@@ -192,6 +197,7 @@ std::string Socket::recv() noexcept(false) {
     int n = ::recv(m_Sd, buf, sizeof(buf), MSG_NOSIGNAL);
 #endif
 
+    /// что по буферу?
     if (-1 == n && errno != EAGAIN)
         throw std::runtime_error("read failed: " + std::string(strerror(errno)));
     if (0 == n)
@@ -199,9 +205,11 @@ std::string Socket::recv() noexcept(false) {
     if (-1 == n)
         throw std::runtime_error("client: " + std::to_string(m_Sd) + " timeouted");
 
-    std::string ret(buf, buf + n);
+    std::string ret(buf, buf + n); /// string (const char* s, size_t n);
+
     while (ret.back() == '\r' || ret.back() == '\n')
         ret.pop_back();
+
     std::cerr << "client: " << m_Sd << ", recv: " << ret << " [" << n << " bytes]" << std::endl;
     return ret;
 }
@@ -229,27 +237,32 @@ bool Socket::hasData() noexcept(false) {
     return false;
 }
 
-void Socket::createServerSocket(uint32_t port, uint32_t listen_queue_size) noexcept(false) {
-    int sd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (sd <= 0)
+
+void Socket::createServerSocket(uint32_t port, uint32_t listen_queue_size) noexcept(false)
+{
+    int sd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP); ///прописываем семейство сокета
+    if (sd <= 0) /// чекаем успех
         throw std::runtime_error("socket: " + std::string(strerror(errno)));
 
-    setReuseAddr(sd);
+    setReuseAddr(sd); /// выставляем флаг переиспользования у сокета
 
-    struct sockaddr_in serv_addr;
-    memset(&serv_addr, 0, sizeof(serv_addr));
+    struct sockaddr_in serv_addr; /// объявили
+    memset(&serv_addr, 0, sizeof(serv_addr)); /// и заполнили нулями unsignet char
 
+
+    /// указываем семейство сокета
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
     serv_addr.sin_port = htons(port);
 
-    if (::bind(sd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
+    if (::bind(sd, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0) /// связываем с сокетом
+    {
         ::close(sd);
         throw std::runtime_error("bind: " + std::string(strerror(errno)));
     }
 
     ::listen(sd, listen_queue_size);
-    m_Sd = sd;
+    m_Sd = sd; /// ради этого атрибута все и было
 }
 
 std::shared_ptr<Socket> Socket::accept() noexcept(false) {

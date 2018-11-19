@@ -45,5 +45,32 @@ endif()
 add_executable(tests tests/first_test.cpp)
 target_link_libraries(tests gtest_main)
 
-add_executable(server src/net/simple_server.cpp src/net/socket.cpp src/net/socket.hpp)
-add_executable(client src/net/main_client.cpp src/net/socket.cpp src/net/socket.hpp)
+
+add_executable(server
+        src/net/Server.cpp
+        src/net/socket.cpp
+        src/logic/GameManager.cpp
+        )
+
+add_executable(client
+        src/net/Client.cpp
+        src/net/socket.cpp
+        )
+
+add_executable(tests_situation
+        src/logic/tests/TestsForGameSituation.cpp
+        src/logic/GameManager.cpp
+        src/logic/GameSituation.h
+        src/logic/Card.h
+        src/logic/PlayerInfo.h
+        )
+target_link_libraries(tests_situation gtest)
+
+add_executable(tests_parsers
+        src/parsers/tests/TestsForParsers.cpp
+        src/parsers/StepParser.cpp
+        src/parsers/SituationParser.cpp
+        src/logic/Card.h
+        src/logic/Step.h
+        )
+target_link_libraries(tests_parsers gtest)
