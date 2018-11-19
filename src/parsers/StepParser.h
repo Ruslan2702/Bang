@@ -7,6 +7,9 @@
 
 #include "../logic/Step.h"
 #include <iostream>
+#include <boost/array.hpp>
+#include <regex>
+#include <string>
 
 class StepParser {
 public:
