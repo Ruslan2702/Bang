@@ -34,7 +34,7 @@ namespace {
             rimap_local_ip_ptr[1] = ipf[1];
             rimap_local_ip_ptr[2] = ipf[2];
             rimap_local_ip_ptr[3] = ipf[3];
-            std::cerr << "resolved: " << int2ipv4(cur_interface_ip) << std::endl;
+//            std::cerr << "resolved: " << int2ipv4(cur_interface_ip) << std::endl;
             ++pAddr;
         }
 
@@ -208,7 +208,7 @@ std::string Socket::recv() noexcept(false)
     while (ret.back() == '\r' || ret.back() == '\n')
         ret.pop_back();
 
-    std::cerr << "client: " << m_Sd << ", recv: " << ret << " [" << n << " bytes]" << std::endl;
+//    std::cerr << "client: " << m_Sd << ", recv: " << ret << " [" << n << " bytes]" << std::endl;
     return ret;
 }
 

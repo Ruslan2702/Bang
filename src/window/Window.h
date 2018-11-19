@@ -10,20 +10,21 @@
 #include "../logic/GameSituation.h"
 
 class Window {
-public:
-    Window();
-    ~Window();
-    void HelloMessage(std::string& host, int* port);
-    void StartGameMessage();
-    void UpgradeWindowByNewStep();
+ public:
+  Window();
+  ~Window();
+  void HelloMessage(std::string& host, int* port);
+  void YouAreConnected();
+  void StartGameMessage();
+  void UpgradeWindowByNewStep();
 
 
 private:
-    void GetAddress(std::string& host, int* port);
+  void GetAddress(std::string& host, int* port);
 
-    int rows;
-    int cols;
-    GameSituation gameSituation;
+  int rows;
+  int cols;
+  GameSituation gameSituation;
 };
 
 
