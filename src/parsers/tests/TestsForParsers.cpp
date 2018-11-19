@@ -169,11 +169,6 @@ TEST(TestsForStepParser, simple_encode_03) {
     EXPECT_TRUE(expected == real_row_step);
 }
 
-
-
-
-
-
 /*
  * Тут когда нибудь наверно но скорее всего нет будут тесты для братного превращение
  * структуры
