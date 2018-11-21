@@ -5,18 +5,24 @@
 #include "GameSituation.h"
 
 class GameManager {
-public:
-    void bang(int from_player, int to_player);
-    bool can_bang(int from_player, int to_player); /// расчет ренджи
-    void drink_beer(int player_id); /// пиво на себя полюбому
-    bool is_miss(int id_player);
-    GameSituation get_situation();
-    bool check_count_cards(int player_id); /// карт должно быть столько, сколько HP
-    void add_2_cards_before_move(int player_id); /// добавление 2 карт перед началом хода
-    void gun(int id_player); /// + 1 к радиуму поражения
-
-    GameSituation current_situation;
-    std::vector<Card> cards;
+ public:
+  void bang(std::shared_ptr<PlayerInfo> player_from, std::shared_ptr<PlayerInfo> player_to);
+  bool can_bang(std::shared_ptr<PlayerInfo> player_from, std::shared_ptr<PlayerInfo> player_to) const; /// расчет ренджи
+  void drink_beer(std::shared_ptr<PlayerInfo> player_to); /// пиво на себя полюбому
+  bool player_have_card(std::shared_ptr<PlayerInfo> player, std::string card_name) const;
+  void check_end_game();
+  GameSituation get_situation();
+  bool check_count_cards(std::shared_ptr<PlayerInfo> player_from) const; /// карт должно быть столько, сколько HP
+  void add_2_cards_before_move(std::shared_ptr<PlayerInfo> player); /// добавление 2 карт перед началом хода
+  void gun(std::shared_ptr<PlayerInfo> player); /// + 1 к радиуму поражен
+  void drop_card(std::shared_ptr<PlayerInfo> player, std::string name);
+  int get_count_alive_players() const;
+  GameSituation set_situation();
+  Card get_random_card();
+  Card get_card(std::string name) const;
+  std::shared_ptr<PlayerInfo> get_player(int player_id);
+  GameSituation current_situation;
+  std::vector<Card> cards;
 };
 
 #endif //GAME_MANAGER_GAMEMANAGER_H
