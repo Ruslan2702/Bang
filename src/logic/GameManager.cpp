@@ -3,13 +3,14 @@
 #include <algorithm>
 #include <map>
 
-void GameManager::bang(PlayerInfo player_from, PlayerInfo &player_to) {
+void GameManager::bang(std::shared_ptr<PlayerInfo> player_from, std::shared_ptr<PlayerInfo> player_to) {
   if (can_bang(player_from, player_to)) {
-    if (!(is_miss(player_to))) {
-      player_to.HP--;
-      if (player_to.HP == 0) {
-        player_to.is_dead = true;
-        std::string role = player_to.role;
+
+    if (!(player_have_card(player_to, "[MISS]"))) {
+      player_to->HP--;
+      if (player_to->HP == 0) {
+        player_to->is_dead = true;
+        std::string role = player_to->role;
         if (role == "bandit")
           current_situation.count_bandits--;
         else if (role == "helper")
@@ -19,22 +20,28 @@ void GameManager::bang(PlayerInfo player_from, PlayerInfo &player_to) {
         else if (role == "rinnegan")
           current_situation.renigan_alive = false;
       }
+
     } else {
-      Card miss_card;
-      miss_card.name_card = "[MISS]";
-      player_to.cards_in_hand.erase(find(player_to.cards_in_hand.begin(), player_to.cards_in_hand.end(), miss_card));
+
+      drop_card(player_to, "[MISS]");
+
     }
+    drop_card(player_from, "[BANG]");
     check_end_game();
   }
 }
 
-bool GameManager::can_bang(PlayerInfo player_from, PlayerInfo &player_to) {
-  return player_from.range + player_from.position >= player_to.position;
+bool GameManager::can_bang(std::shared_ptr<PlayerInfo> player_from, std::shared_ptr<PlayerInfo> player_to) const {
+  return (player_from->range + player_from->position >= player_to->position)
+      and player_have_card(player_from, "[BANG]");
 }
 
-void GameManager::drink_beer(PlayerInfo &player) {
-  if (player.MAX_HP > player.HP)
-    player.HP++;
+void GameManager::drink_beer(std::shared_ptr<PlayerInfo> player) {
+  if (player_have_card(player, "[BEER]"))
+    if (player->MAX_HP > player->HP) {
+      player->HP++;
+      drop_card(player, "[BEER]");
+    }
 }
 
 GameSituation GameManager::get_situation() {
@@ -42,28 +49,28 @@ GameSituation GameManager::get_situation() {
   return dummy; /// dummy
 }
 
-bool GameManager::is_miss(PlayerInfo player) {
-  Card miss_card;
-  miss_card.name_card = "[MISS]";
-  return player.cards_in_hand.end() != find(player.cards_in_hand.begin(), player.cards_in_hand.end(), miss_card);
+bool GameManager::player_have_card(std::shared_ptr<PlayerInfo> player, std::string card_name) const {
+  Card card;
+  card = get_card(std::move(card_name));
+  return player->cards_in_hand.end() != find(player->cards_in_hand.begin(), player->cards_in_hand.end(), card);
 }
 
-bool GameManager::check_count_cards(PlayerInfo player) {
-  return player.HP >= player.cards_in_hand.size(); /// dummy
+bool GameManager::check_count_cards(std::shared_ptr<PlayerInfo> player) const {
+  return player->HP >= player->cards_in_hand.size(); /// dummy
 }
 
-void GameManager::add_2_cards_before_move(PlayerInfo &player) {
+void GameManager::add_2_cards_before_move(std::shared_ptr<PlayerInfo> player) {
   Card card_1 = get_random_card();
   Card card_2 = get_random_card();
-  player.cards_in_hand.push_back(card_1);
-  player.cards_in_hand.push_back(card_2);
+  player->cards_in_hand.push_back(card_1);
+  player->cards_in_hand.push_back(card_2);
 }
 
-void GameManager::gun(PlayerInfo &player) {
-  player.range++;
-  Card gun_card;
-  gun_card.name_card = "[GUN]";
-  player.cards_in_hand.erase(find(player.cards_in_hand.begin(), player.cards_in_hand.end(), gun_card));
+void GameManager::gun(std::shared_ptr<PlayerInfo> player) {
+  if (player_have_card(player, "[GUN]")) {
+    player->range++;
+    drop_card(player, "[GUN]");
+  }
 }
 
 GameSituation GameManager::set_situation() {
@@ -87,10 +94,10 @@ void GameManager::check_end_game() {
 
 Card GameManager::get_random_card() {
   Card miss_card, beer_card, gun_card, bang_card, card;
-  miss_card.name_card = "[MISS]";
-  gun_card.name_card = "[GUN]";
-  beer_card.name_card = "[BEER]";
-  bang_card.name_card = "[BANG]";
+  miss_card = get_card("[MISS]");
+  gun_card = get_card("[GUN]");
+  beer_card = get_card("[BEER]");
+  bang_card = get_card("[BANG]");
   int seed = std::rand() % 4;
   switch (seed) {
     case 0:card = miss_card;
@@ -103,4 +110,19 @@ Card GameManager::get_random_card() {
       break;
   }
   return card;
+}
+
+std::shared_ptr<PlayerInfo> GameManager::get_player(int player_id) {
+  return current_situation.player_list[player_id];
+}
+
+Card GameManager::get_card(std::string name) const {
+  Card card;
+  card.name_card = std::move(name);
+  return card;
+}
+
+void GameManager::drop_card(std::shared_ptr<PlayerInfo> player, std::string name) {
+  Card card = get_card(std::move(name));
+  player->cards_in_hand.erase(find(player->cards_in_hand.begin(), player->cards_in_hand.end(), card));
 }
