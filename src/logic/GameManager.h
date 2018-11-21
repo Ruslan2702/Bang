@@ -16,6 +16,7 @@ class GameManager {
   void add_2_cards_before_move(std::shared_ptr<PlayerInfo> player); /// добавление 2 карт перед началом хода
   void gun(std::shared_ptr<PlayerInfo> player); /// + 1 к радиуму поражен
   void drop_card(std::shared_ptr<PlayerInfo> player, std::string name);
+  int get_count_alive_players() const;
   GameSituation set_situation();
   Card get_random_card();
   Card get_card(std::string name) const;

@@ -32,7 +32,8 @@ void GameManager::bang(std::shared_ptr<PlayerInfo> player_from, std::shared_ptr<
 }
 
 bool GameManager::can_bang(std::shared_ptr<PlayerInfo> player_from, std::shared_ptr<PlayerInfo> player_to) const {
-  return (player_from->range + player_from->position >= player_to->position)
+  int count_players = get_count_alive_players();
+  return ((player_from->range + player_from->position) >= player_to->position % count_players)
       and player_have_card(player_from, "[BANG]");
 }
 
@@ -125,4 +126,12 @@ Card GameManager::get_card(std::string name) const {
 void GameManager::drop_card(std::shared_ptr<PlayerInfo> player, std::string name) {
   Card card = get_card(std::move(name));
   player->cards_in_hand.erase(find(player->cards_in_hand.begin(), player->cards_in_hand.end(), card));
+}
+
+int GameManager::get_count_alive_players() const {
+  int count = 0;
+  for ( std::shared_ptr<PlayerInfo> player : current_situation.player_list )
+    if (!(player->is_dead))
+      count++;
+  return count;
 }

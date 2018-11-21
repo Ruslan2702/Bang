@@ -10,58 +10,51 @@
 
 GameSituation get_fake_situation() {
 
-  /// ПОЧЕМУ В ТАКОМ СЛУЧАЕ ERROR 11?
-  ///std::shared_ptr<PlayerInfo> player2;
-  ///(*player2).HP = 3;
-  ///std::cout << (*player2).HP << std::endl;
-  ///player2->role = "bandit";
-  ///player2->name = "Tom";
-
-  GameSituation fake_situation = GameSituation();
+GameSituation fake_situation = GameSituation();
 
   std::shared_ptr<PlayerInfo> player1 = std::make_shared<PlayerInfo>();
-  (*player1).HP = 2;
-  (*player1).role = "bandit";
-  (*player1).name = "Bob";
-  (*player1).MAX_HP = 3;
-  (*player1).range = 1;
-  (*player1).position = 1;
+  player1->HP = 2;
+  player1->role = "bandit";
+  player1->name = "Bob";
+  player1->MAX_HP = 3;
+  player1->range = 1;
+  player1->position = 1;
 
   std::shared_ptr<PlayerInfo> player2 = std::make_shared<PlayerInfo>();
-  (*player2).HP = 3;
-  (*player2).role = "bandit";
-  (*player2).name = "Tom";
-  (*player2).MAX_HP = 3;
-  (*player2).position = 2;
+  player2->HP = 3;
+  player2->role = "bandit";
+  player2->name = "Tom";
+  player2->MAX_HP = 3;
+  player2->position = 2;
 
   std::shared_ptr<PlayerInfo> player3 = std::make_shared<PlayerInfo>();
-  (*player3).HP = 1;
-  (*player3).role = "bandit";
-  (*player3).name = "Rob";
-  (*player3).MAX_HP = 3;
-  (*player3).position = 3;
+  player3->HP = 1;
+  player3->role = "bandit";
+  player3->name = "Rob";
+  player3->MAX_HP = 3;
+  player3->position = 3;
 
   std::shared_ptr<PlayerInfo> player4 = std::make_shared<PlayerInfo>();
-  (*player4).HP = 3;
-  (*player4).role = "helper";
-  (*player4).name = "Joe";
-  (*player4).MAX_HP = 3;
-  (*player4).position = 4;
+  player4->HP = 3;
+  player4->role = "helper";
+  player4->name = "Joe";
+  player4->MAX_HP = 3;
+  player4->position = 4;
 
   std::shared_ptr<PlayerInfo> player5 = std::make_shared<PlayerInfo>();
-  (*player5).HP = 3;
-  (*player5).role = "sheriff";
-  (*player5).name = "Li";
-  (*player5).MAX_HP = 3;
-  (*player5).position = 5;
-  (*player5).range = 4;
+  player5->HP = 3;
+  player5->role = "sheriff";
+  player5->name = "Li";
+  player5->MAX_HP = 3;
+  player5->position = 5;
+  player5->range = 4;
 
   std::shared_ptr<PlayerInfo> player6 = std::make_shared<PlayerInfo>();
-  (*player6).HP = 3;
-  (*player6).role = "rinnegan";
-  (*player6).name = "Loo";
-  (*player6).MAX_HP = 3;
-  (*player6).position = 6;
+  player6->HP = 3;
+  player6->role = "rinnegan";
+  player6->name = "Loo";
+  player6->MAX_HP = 3;
+  player6->position = 6;
 
   fake_situation.player_list.push_back(player1);
   fake_situation.player_list.push_back(player2);
@@ -85,7 +78,7 @@ void TestGameSituation::SetUp() {
 }
 
 TEST_F(TestGameSituation, simple_beer_01) noexcept(false) {
-  /// simple beer +1 HP
+  /// Использование карты пиво +1 к НР
   int from_player = 0;
   std::shared_ptr<PlayerInfo> player = manager.get_player(from_player);
   Card card;
@@ -100,7 +93,7 @@ TEST_F(TestGameSituation, simple_beer_01) noexcept(false) {
 }
 
 TEST_F(TestGameSituation, simple_beer_02) noexcept(false) {
-  /// limit HP + 1 not work, because player already have max HP
+  /// Ограничение НР, не может быть больше МахНР
   int from_player = 1;
   std::shared_ptr<PlayerInfo> player = manager.get_player(from_player);
   Card card;
@@ -114,7 +107,7 @@ TEST_F(TestGameSituation, simple_beer_02) noexcept(false) {
 }
 
 TEST_F(TestGameSituation, simple_bang_can_bang_01) noexcept(false) {
-  /// simple can_bang true
+  /// Возможность выстрела, игрок достает до цели
   int from_player = 0;
   int to_player = 1;
   std::shared_ptr<PlayerInfo> player_from = manager.get_player(from_player);
@@ -126,7 +119,7 @@ TEST_F(TestGameSituation, simple_bang_can_bang_01) noexcept(false) {
 }
 
 TEST_F(TestGameSituation, simple_bang_can_bang_02) noexcept(false) {
-  /// simple can_bang false
+  /// Возможность выстрела, игрок не достает до цели
   int from_player = 0;
   int to_player = 2;
   std::shared_ptr<PlayerInfo> player_from = manager.get_player(from_player);
@@ -134,8 +127,20 @@ TEST_F(TestGameSituation, simple_bang_can_bang_02) noexcept(false) {
   EXPECT_FALSE(manager.can_bang(player_from, player_to));
 }
 
+TEST_F(TestGameSituation, simple_bang_can_bang_03) noexcept(false) {
+  /// Возможность выстрела, расчет по кругу
+  int from_player = 0;
+  int to_player = 5;
+  std::shared_ptr<PlayerInfo> player_from = manager.get_player(from_player);
+  std::shared_ptr<PlayerInfo> player_to = manager.get_player(to_player);
+  Card card;
+  card.name_card = "[BANG]";
+  player_from->cards_in_hand.push_back(card);
+  EXPECT_TRUE(manager.can_bang(player_from, player_to));
+}
+
 TEST_F(TestGameSituation, simple_is_miss_01) {
-  /// have MISS card
+  /// Наличие карты
   Card miss_card;
   miss_card.name_card = "[MISS]";
   int id_player = 0;
@@ -145,14 +150,14 @@ TEST_F(TestGameSituation, simple_is_miss_01) {
 }
 
 TEST_F(TestGameSituation, simple_is_miss_02) {
-  /// have not MISS card
+  /// Отсутствие карты
   int id_player = 1;
   std::shared_ptr<PlayerInfo> player = manager.get_player(id_player);
   EXPECT_FALSE(manager.player_have_card(player, "[MISS]"));
 }
 
 TEST_F(TestGameSituation, simple_bang_01) {
-  /// simple bang - 1 HP
+  /// Выстрел понижает НР на 1
   int from_player = 0;
   int to_player = 1;
   std::shared_ptr<PlayerInfo> player_from = manager.get_player(from_player);
@@ -167,7 +172,7 @@ TEST_F(TestGameSituation, simple_bang_01) {
 }
 
 TEST_F(TestGameSituation, simple_bang_02) {
-  /// simple bang - 1 HP and person dead and - 1 bandit
+  /// Выстрел уничтожает бандита, его кол-во так же -1
   int from_player = 4;
   int to_player = 2;
   std::shared_ptr<PlayerInfo> player_from = manager.get_player(from_player);
@@ -186,8 +191,7 @@ TEST_F(TestGameSituation, simple_bang_02) {
 }
 
 TEST_F(TestGameSituation, simple_bang_03) {
-  /// simple bang with miss
-
+  /// Выстрел не отнимает НР, если есть карта MISS, она автоматически используется
   Card miss_card;
   miss_card.name_card = "[MISS]";
 
@@ -241,12 +245,12 @@ TEST_F(TestGameSituation, end_game_01) {
   /// 4 - sheriff
   /// 5 - rinnegan
 
-  (*manager.current_situation.player_list[0]).HP = 0;
-  (*manager.current_situation.player_list[0]).is_dead = true;
-  (*manager.current_situation.player_list[1]).HP = 0;
-  (*manager.current_situation.player_list[1]).is_dead = true;
-  (*manager.current_situation.player_list[2]).HP = 0;
-  (*manager.current_situation.player_list[2]).is_dead = true;
+  manager.current_situation.player_list[0]->HP = 0;
+  manager.current_situation.player_list[0]->is_dead = true;
+  manager.current_situation.player_list[1]->HP = 0;
+  manager.current_situation.player_list[1]->is_dead = true;
+  manager.current_situation.player_list[2]->HP = 0;
+  manager.current_situation.player_list[2]->is_dead = true;
   manager.current_situation.count_bandits = 0;
 
   (*manager.current_situation.player_list[4]).HP = 1;
@@ -307,12 +311,12 @@ TEST_F(TestGameSituation, end_game_03) {
   /// 4 - sheriff
   /// 5 - rinnegan
 
-  (*manager.current_situation.player_list[0]).HP = 0;
-  (*manager.current_situation.player_list[0]).is_dead = true;
-  (*manager.current_situation.player_list[1]).HP = 0;
-  (*manager.current_situation.player_list[1]).is_dead = true;
-  (*manager.current_situation.player_list[2]).HP = 0;
-  (*manager.current_situation.player_list[2]).is_dead = true;
+  manager.current_situation.player_list[0]->HP = 0;
+  manager.current_situation.player_list[0]->is_dead = true;
+  manager.current_situation.player_list[1]->HP = 0;
+  manager.current_situation.player_list[1]->is_dead = true;
+  manager.current_situation.player_list[2]->HP = 0;
+  manager.current_situation.player_list[2]->is_dead = true;
   manager.current_situation.count_bandits = 0;
 
   int sheriff_id = 4;
@@ -398,7 +402,6 @@ TEST_F(TestGameSituation, cards_count_04) {
  * то есть почти во все функции с картами нужно совать cards_id! очень важно, а то не заработает
  *
  * остались тесты работы парсера и клиента
- * возможно нужно написать операторы равенства для структур done
  */
 
 int main(int argc, char **argv) {
