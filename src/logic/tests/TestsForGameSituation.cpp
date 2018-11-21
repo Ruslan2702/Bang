@@ -17,7 +17,7 @@ GameSituation get_fake_situation() {
   ///player2->role = "bandit";
   ///player2->name = "Tom";
 
-  GameSituation fake_situation;
+  GameSituation fake_situation = GameSituation();
 
   std::shared_ptr<PlayerInfo> player1 = std::make_shared<PlayerInfo>();
   (*player1).HP = 2;
@@ -74,13 +74,15 @@ GameSituation get_fake_situation() {
 }
 
 class TestGameSituation : public ::testing::Test {
-  virtual void SetUp() {
-    manager.current_situation = get_fake_situation();
-  }
+  void SetUp() override;
 
  public:
   GameManager manager;
 };
+
+void TestGameSituation::SetUp() {
+  manager.current_situation = get_fake_situation();
+}
 
 TEST_F(TestGameSituation, simple_beer_01) noexcept(false) {
   /// simple beer +1 HP
@@ -351,7 +353,7 @@ TEST_F(TestGameSituation, cards_count_01) {
   size_t after_cards_count = player->cards_in_hand.size();
   EXPECT_EQ(before_cards_count + 2, after_cards_count);
 
-  size_t HP = static_cast<size_t>(player->HP);
+  auto HP = static_cast<size_t>(player->HP);
   EXPECT_TRUE(HP >= after_cards_count);
 }
 
@@ -365,7 +367,7 @@ TEST_F(TestGameSituation, cards_count_02) {
   EXPECT_EQ(before_cards_count + 2, after_cards_count);
 
   player->HP = 1;
-  size_t HP = static_cast<size_t>(player->HP);
+  auto HP = static_cast<size_t>(player->HP);
   EXPECT_FALSE(HP >= after_cards_count);
 }
 
