@@ -16,13 +16,15 @@ int main(int argv, char** argc) {
     int port = 0;
     window.HelloMessage(host, &port);
 
-    Client client(host.c_str(), port);
+//    Client client(host.c_str(), port);
 
 
-    client.JoinTheGame();
+//    client.JoinTheGame();
     window.YouAreConnected();
-    client.SendNewStep("First step in this game");
-    window.StartGameMessage();
+//    client.SendNewStep("First step in this game");
+    window.GameInfoMessage();
+    window.UpgradeWindowByNewStep();
+    window.YourTurn();
 //    std::cout << client.GetGameSituation() << std::endl;
 //    std::cout << "Client works!" << std::endl;
 
