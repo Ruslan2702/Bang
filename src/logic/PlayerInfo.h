@@ -10,14 +10,14 @@
 #include <iostream>
 
 struct PlayerInfo {
-    std::vector<Card> cards_in_hand;
-    int HP;
-    int MAX_XP;
-    std::string role;
-    std::string name;
-    int range = 1;
-    bool is_dead = 0;
+  std::vector<Card> cards_in_hand;
+  int HP;
+  int MAX_HP;
+  std::string role;
+  std::string name;
+  int range = 1;
+  int position;
+  bool is_dead = false;
 };
-
 
 #endif BANG_PLAYERINFO_H
