@@ -8,6 +8,7 @@ set(BINDIR ${CMAKE_SOURCE_DIR}/bin)
 MAKE_DIRECTORY(${BINDIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${BINDIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${BINDIR})
+set(CMAKE_CXX_FLAGS "-lncurses")
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
@@ -74,3 +75,20 @@ add_executable(tests_parsers
         src/logic/Step.h
         )
 target_link_libraries(tests_parsers gtest)
+
+
+if(APPLE)
+    add_custom_command(TARGET client PRE_BUILD COMMAND cd /tmp/ &&
+            curl -O ftp://ftp.gnu.org/gnu/ncurses/ncurses-6.1.tar.gz &&
+            tar -xzvf ncurses-6.1.tar.gz &&
+            cd ./ncurses-6.1 && ./configure && make && sudo make install)
+endif(APPLE)
+
+if(UNIX AND NOT APPLE)
+    add_custom_command(TARGET client PRE_BUILD COMMAND sudo apt-get install libncurses5-dev libncursesw5-dev)
+endif(UNIX AND NOT APPLE)
+
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIR})
+target_link_libraries(client ${CURSES_LIBRARIES})
+
