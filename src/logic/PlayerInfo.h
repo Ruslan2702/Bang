@@ -10,8 +10,8 @@
 #include "Card.h"
 #include "Gun.h"
 
-class PlayerInfo {
-    std::vector<Card> cards_in_hand;
+struct PlayerInfo {
+    std::vector<std::string> cards_in_hand;
     int HP;
     std::string role;
     std::string name;

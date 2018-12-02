@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include <unistd.h>
+#include <vector>
 
 
 #define msleep(msec) usleep(msec*1000)
@@ -54,8 +55,20 @@ void Window::HelloMessage(std::string& host, int* port) {
     fin.close();
 }
 
-void Window::YouAreConnected() {
-    printw("\n\nNow here are 3/6 players. Please wait");
+void Window::YouAreConnected(const GameSituation& game) {
+    gameSituation = game;
+    currentPlayer = 0;
+    id = 5; // ПОЛУЧАЕМ С СЕРВЕРА
+    for (int i = 0; i < game.player_list.size(); ++i) {
+      if (game.player_list[i]->role == "SHERIFF") {
+        sheriff = i;
+        break;
+      }
+    }
+
+
+    sheriff = 3; // ОТЛАДКА
+    printw("\nNow here are 3/6 players. Please wait");
     refresh();
     msleep(2000);
 }
@@ -63,12 +76,48 @@ void Window::YouAreConnected() {
 void Window::GameInfoMessage() {
     clear();
     mvwprintw(stdscr, 0, 0, "GameID: 1442\n\n");
-    printw("Your name: Joe\n");
-    printw("Your role: Sheriff\n");
-    printw("Your health: 4\n");
-    printw("Your gun power: 1\n\n\n\n");
-    refresh();
+
+    for (int i = 0; i < gameSituation.player_list.size(); i++) {
+      if (i == id) {
+        continue;
+      }
+
+      if (i == currentPlayer) {
+        addch('*');
+      }
+      else {
+        addch(' ');
+      }
+
+      printw(" %dHP   %s", gameSituation.player_list[i]->HP, gameSituation.player_list[i]->name.c_str());
+
+      if (i == sheriff) {
+        printw("  (SHERIFF)");
+      }
+
+      printw("\n");
+    }
+
+    printw("\n\nLast step:\n Player1: 'BANG' ->  Player2");
+
+    mvwprintw(stdscr, 1, cols / 2, "YOU:");
+    mvwprintw(stdscr, 2, cols / 2 + 3, "NAME: %s", gameSituation.player_list[id]->name.c_str());
+    mvwprintw(stdscr, 3, cols / 2 + 3, "HP: %d", gameSituation.player_list[id]->HP);
+    mvwprintw(stdscr, 4, cols / 2 + 3, "ROLE: %s", gameSituation.player_list[id]->role.c_str());
+    mvwprintw(stdscr, 5, cols / 2 + 3, "RANGE: %d", gameSituation.player_list[id]->range);
+
+    mvwprintw(stdscr, 6, cols / 2 + 3, "CARDS:");
+    for (int i = 0; i < gameSituation.player_list[id]->cards_in_hand.size(); ++i) {
+      mvwprintw(stdscr, 7 + i, cols / 2 + 6, "%s", gameSituation.player_list[id]->cards_in_hand[i].c_str());
+    }
+
+//    printw("Your name: Joe\n");
+//    printw("Your role: Sheriff\n");
+//    printw("Your health: 4\n");
+//    printw("Your gun power: 1\n\n\n\n");
 //    msleep(2000);
+    printw("\n\n\n\n");
+    refresh();
 }
 
 void Window::UpgradeWindowByNewStep() {
@@ -91,13 +140,19 @@ std::string Window::YourTurn() {
 
   GameInfoMessage();
   printw("Your step:\n DROP '%s'", card.c_str());
-  return "Goog";
+  std::string result = "<STEP> " + card + " " + action + " " + toPlayer + " </STEP>";
+  return result;
 }
 
 std::string Window::CardKeyboard() {
-  std::vector<std::string> items{"Bang", "Beer", "Miss"};
-  std::string msg = "Your turn! Select an action\n";
-  return items[PrintKeyboardAndGetChoise(items, msg)];
+//  std::vector<std::string> items;
+//  for (const auto card : gameSituation.player_list[ID]->cards_in_hand) {
+//    items.push_back(card);
+//  }
+  std::string msg = "Your turn! Select a card";
+  return gameSituation.player_list[id]->cards_in_hand[
+      PrintKeyboardAndGetChoise(gameSituation.player_list[id]->cards_in_hand, msg)
+      ];
 }
 
 std::string Window::ActionKeyboard(std::string selectedCard) {
@@ -107,10 +162,19 @@ std::string Window::ActionKeyboard(std::string selectedCard) {
 }
 
 std::string Window::PlayerKeyboard(std::string selectedCard, std::string selectedAction) {
-  std::vector<std::string> items{"Player 1", "Player 2", "Player 4", "Player 5", "Player 6",};
+//  std::vector<std::string> items{"Player 1", "Player 2", "Player 4", "Player 5", "Player 6",};
+  std::vector<std::string> players;
+  for (int i = 0; i < gameSituation.player_list.size(); ++i) {
+    if (i == id) {
+      continue;
+    }
+
+    players.emplace_back(gameSituation.player_list[i]->name);
+  }
+
   std::string msg = "Selected card: " + selectedCard + '\n' +
       "Selected action: " + selectedAction + '\n';
-  return items[PrintKeyboardAndGetChoise(items, msg)];
+  return players[PrintKeyboardAndGetChoise(players, msg)];
 }
 
 int Window::PrintKeyboardAndGetChoise(const std::vector<std::string> &items,
@@ -150,22 +214,7 @@ int Window::PrintKeyboardAndGetChoise(const std::vector<std::string> &items,
   }
 }
 
-
-
-
-
-
-//int main(int argc, char* argv[]) {
-//    Window window;
-//
-//    std::string host = "";
-//    int port = 0;
-//
-//    try {
-//        window.HelloMessage(host, &port);
-//    } catch (...) {}
-//
-//
-//
-//    return 0;
-//}
+Window &Window::getInstance() {
+  static Window instance;
+  return instance;
+}

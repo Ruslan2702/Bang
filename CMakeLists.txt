@@ -56,28 +56,22 @@ target_link_libraries(tests gtest_main)
 add_executable(server src/net/Server.cpp src/net/socket.cpp src/net/socket.hpp src/net/Server.h)
 add_executable(client src/net/Client.cpp src/net/main_client.cpp src/net/socket.cpp src/window/Window.cpp ${INSTALL_NCURSES})
 
-
 if(APPLE)
-    add_custom_command(TARGET client PRE_BUILD COMMAND cd /tmp/)
-    add_custom_command(TARGET client PRE_BUILD COMMAND curl -O ftp://ftp.gnu.org/gnu/ncurses/ncurses-6.1.tar.gz)
-    add_custom_command(TARGET client PRE_BUILD COMMAND tar -xzvf ncurses-6.1.tar.gz)
-    add_custom_command(TARGET client PRE_BUILD COMMAND cd ./ncurses-6.1)
-    add_custom_command(TARGET client PRE_BUILD COMMAND ./configure)
-    add_custom_command(TARGET client PRE_BUILD COMMAND make)
-    add_custom_command(TARGET client PRE_BUILD COMMAND sudo make install)
+    add_custom_command(TARGET client PRE_BUILD COMMAND cd /tmp/ &&
+            curl -O ftp://ftp.gnu.org/gnu/ncurses/ncurses-6.1.tar.gz &&
+            tar -xzvf ncurses-6.1.tar.gz &&
+            cd ./ncurses-6.1 && ./configure && make && sudo make install)
 endif(APPLE)
-#
-#if(UNIX AND NOT APPLE)
-#    add_custom_command(TARGET client PRE_BUILD COMMAND sudo apt-get install libncurses5-dev libncursesw5-dev)
-#endif(UNIX AND NOT APPLE)
 
+if(UNIX AND NOT APPLE)
+    add_custom_command(TARGET client PRE_BUILD COMMAND sudo apt-get install libncurses5-dev libncursesw5-dev)
+endif(UNIX AND NOT APPLE)
 
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})
-
-
 target_link_libraries(client ${CURSES_LIBRARIES})
-#target_link_libraries(client include/libboost_regex.a)
+
+
 
 target_link_libraries(tests gtest_main)
 

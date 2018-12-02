@@ -8,19 +8,27 @@
 
 #include <ncurses.h>
 #include "../logic/GameSituation.h"
+#include "../logic/Step.h"
 
 class Window {
  public:
-  Window();
-  ~Window();
+  Window(const Window&) = delete;
+  Window& operator=(Window&) = delete;
+  Window(const Window&&) = delete;
+  Window& operator=(Window&&) = delete;
+  static Window& getInstance();
+
   void HelloMessage(std::string& host, int* port);
-  void YouAreConnected();
+  void YouAreConnected(const GameSituation&);
   void GameInfoMessage();
   void UpgradeWindowByNewStep();
   std::string YourTurn();
 
 
 private:
+  Window();
+  ~Window();
+
   void GetAddress(std::string& host, int* port);
   std::string CardKeyboard();
   std::string ActionKeyboard(std::string selectedCard);
@@ -29,7 +37,13 @@ private:
 
   int rows;
   int cols;
+
   GameSituation gameSituation;
+  Step lastStep;
+
+  int currentPlayer;
+  int sheriff;
+  int id;
 };
 
 
