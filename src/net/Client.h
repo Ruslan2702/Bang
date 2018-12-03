@@ -12,15 +12,23 @@
 
 class Client {
 public:
-    Client(const std::string& _host, int _port);
+    Client(const Client&) = delete;
+    Client& operator=(Client&) = delete;
+    Client(const Client&&) = delete;
+    Client& operator=(Client&&) = delete;
+    static Client& getInstance(const std::string& _host, int _port);
+
+
     void JoinTheGame();
     void GetFirstMessage();
     std::string GetGameSituation();
     void SendNewStep(const std::string& command);
     void DrowWindow();
-    ~Client();
 
 private:
+    Client(const std::string& _host, int _port);
+    ~Client();
+
     Socket socket;
     std::string host;
     int port;

@@ -64,15 +64,16 @@ int main(int argv, char** argc) {
 
     int myId = 3; // Получен от сервера
 
-//    Client client(host.c_str(), port);
+    Client& client = Client::getInstance(host.c_str(), port);
 
 
-//    client.JoinTheGame();
+    client.JoinTheGame();
     window.YouAreConnected(game);
 //    client.SendNewStep("First step in this game");
     window.GameInfoMessage();
 //    window.UpgradeWindowByNewStep();
-    window.YourTurn();
+    std::string answer = window.YourTurn();
+    client.SendNewStep(answer);
 //    std::cout << client.GetGameSituation() << std::endl;
 //    std::cout << "Client works!" << std::endl;
 

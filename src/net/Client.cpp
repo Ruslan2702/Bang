@@ -5,7 +5,7 @@
 #include <string.h>
 #include "Client.h"
 
-const int TIMEOUT = 5;
+const int TIMEOUT = 1;
 
 Client::Client(const std::string &_host, int _port) :
     host(_host),
@@ -14,9 +14,10 @@ Client::Client(const std::string &_host, int _port) :
 
 void Client::JoinTheGame() {
     try {
-        socket.connect(host, port, TIMEOUT);
+        socket.connect(host, port);
     } catch (const std::exception &ex) {
         std::cerr << "ERROR: " << ex.what() << std::endl;
+        throw std::runtime_error("Connection error");
     }
 
 //    socket.setNonBlocked(true);
@@ -35,6 +36,11 @@ void Client::SendNewStep(const std::string& command) {
 
 Client::~Client() {
     socket.close();
+}
+
+Client& Client::getInstance(const std::string& _host, int _port) {
+    static Client instance(_host, _port);
+    return instance;
 }
 
 //int main(int argc, char *argv[]) {

@@ -101,12 +101,12 @@ void Window::GameInfoMessage() {
     printw("\n\nLast step:\n Player1: 'BANG' ->  Player2");
 
     mvwprintw(stdscr, 1, cols / 2, "YOU:");
-    mvwprintw(stdscr, 2, cols / 2 + 3, "NAME: %s", gameSituation.player_list[id]->name.c_str());
-    mvwprintw(stdscr, 3, cols / 2 + 3, "HP: %d", gameSituation.player_list[id]->HP);
-    mvwprintw(stdscr, 4, cols / 2 + 3, "ROLE: %s", gameSituation.player_list[id]->role.c_str());
-    mvwprintw(stdscr, 5, cols / 2 + 3, "RANGE: %d", gameSituation.player_list[id]->range);
+    mvwprintw(stdscr, 2, cols / 2 + 3, "#NAME: %s", gameSituation.player_list[id]->name.c_str());
+    mvwprintw(stdscr, 3, cols / 2 + 3, "#HP: %d", gameSituation.player_list[id]->HP);
+    mvwprintw(stdscr, 4, cols / 2 + 3, "#ROLE: %s", gameSituation.player_list[id]->role.c_str());
+    mvwprintw(stdscr, 5, cols / 2 + 3, "#RANGE: %d", gameSituation.player_list[id]->range);
 
-    mvwprintw(stdscr, 6, cols / 2 + 3, "CARDS:");
+    mvwprintw(stdscr, 6, cols / 2 + 3, "#CARDS:");
     for (int i = 0; i < gameSituation.player_list[id]->cards_in_hand.size(); ++i) {
       mvwprintw(stdscr, 7 + i, cols / 2 + 6, "%s", gameSituation.player_list[id]->cards_in_hand[i].c_str());
     }
@@ -135,12 +135,13 @@ std::string Window::YourTurn() {
     toPlayer = PlayerKeyboard(card, action);
     GameInfoMessage();
     printw("Your step:\n '%s' ->  %s", card.c_str(), toPlayer.c_str());
-    return action + card + toPlayer;
+    std::string result = "<STEP> " + action + ' ' + card + ' ' + toPlayer + " </STEP>";
+    return result;
   }
 
   GameInfoMessage();
   printw("Your step:\n DROP '%s'", card.c_str());
-  std::string result = "<STEP> " + card + " " + action + " " + toPlayer + " </STEP>";
+  std::string result = "<STEP> " + action + ' ' + card + " </STEP>";
   return result;
 }
 
@@ -156,7 +157,7 @@ std::string Window::CardKeyboard() {
 }
 
 std::string Window::ActionKeyboard(std::string selectedCard) {
-  std::vector<std::string> items{"Drop", "Use"};
+  std::vector<std::string> items{"DROP", "USE"};
   std::string msg = "Selected card: " + selectedCard + '\n';
   return items[PrintKeyboardAndGetChoise(items, msg)];
 }
@@ -202,7 +203,7 @@ int Window::PrintKeyboardAndGetChoise(const std::vector<std::string> &items,
           choice--;
         break;
       case KEY_DOWN:
-        if (choice != 3) //Если возможно, переводим указатель вниз
+        if (choice != items.size() - 1) //Если возможно, переводим указатель вниз
           choice++;
         break;
       case 10:
