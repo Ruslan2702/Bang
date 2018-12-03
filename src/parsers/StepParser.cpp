@@ -5,6 +5,7 @@
 #include "StepParser.h"
 #include <stdio.h>
 #include <stdlib.h>
+
 Step StepParser::DecodeStep(std::string str) {
     Step step;
     std::cmatch result;
@@ -24,8 +25,8 @@ Step StepParser::DecodeStep(std::string str) {
 
 std::string StepParser::EncodeStep(Step step) {
     std::string resStr = "";
-    resStr = step.card.name_card + " " + step.action + " " +
-            " " + std::to_string(step.from_player) +
-             " " + std::to_string(step.to_player);
+    resStr = "<STEP " + step.card.name_card + " " + step.action + " "
+             + std::to_string(step.from_player) +
+             " " + std::to_string(step.to_player) + " STEP>";
     return resStr; /// dummy
 }
