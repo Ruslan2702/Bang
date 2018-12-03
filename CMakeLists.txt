@@ -76,6 +76,9 @@ add_executable(tests_parsers
         )
 target_link_libraries(tests_parsers gtest)
 
+add_executable(json
+        src/parsers/nlohmann.cpp)
+
 
 if(APPLE)
     add_custom_command(TARGET client PRE_BUILD COMMAND cd /tmp/ &&
