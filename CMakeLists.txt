@@ -46,7 +46,6 @@ endif()
 add_executable(tests tests/first_test.cpp)
 target_link_libraries(tests gtest_main)
 
-
 add_executable(server
         src/net/Server.cpp
         src/net/socket.cpp
@@ -55,8 +54,10 @@ add_executable(server
 
 add_executable(client
         src/net/Client.cpp
+        src/net/main_client.cpp
         src/net/socket.cpp
-        )
+        src/window/Window.cpp
+        ${INSTALL_NCURSES})
 
 add_executable(tests_situation
         src/logic/tests/TestsForGameSituation.cpp
@@ -76,7 +77,6 @@ add_executable(tests_parsers
         )
 target_link_libraries(tests_parsers gtest)
 
-
 if(APPLE)
     add_custom_command(TARGET client PRE_BUILD COMMAND cd /tmp/ &&
             curl -O ftp://ftp.gnu.org/gnu/ncurses/ncurses-6.1.tar.gz &&
@@ -91,4 +91,3 @@ endif(UNIX AND NOT APPLE)
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})
 target_link_libraries(client ${CURSES_LIBRARIES})
-

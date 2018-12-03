@@ -1,3 +1,6 @@
+#ifndef BANG_SOCKET_H
+#define BANG_SOCKET_H
+
 #include <string>
 #include <unistd.h>     // close()
 #include <memory>
@@ -5,7 +8,6 @@
 
 
 std::string int2ipv4(uint32_t ip);
-
 
 class Socket {
 public:
@@ -44,3 +46,5 @@ private:
     int m_Sd;
 };
 
+
+#endif //BANG_SOCKET_H
