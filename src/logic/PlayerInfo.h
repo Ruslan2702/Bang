@@ -6,6 +6,7 @@
 #define BANG_PLAYERINFO_H
 
 #include <vector>
+#include <string>
 #include "Card.h"
 #include <iostream>
 
@@ -20,4 +21,4 @@ struct PlayerInfo {
   bool is_dead = false;
 };
 
-#endif BANG_PLAYERINFO_H
+#endif // BANG_PLAYERINFO_H

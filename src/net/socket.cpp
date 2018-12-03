@@ -1,6 +1,5 @@
 #include <iostream>
 #include <stdexcept>
-
 #include <string.h>
 #include <sys/socket.h> // socket(), AF_INET/PF_INET
 #include <netinet/in.h> // struct sockaddr_in
@@ -35,7 +34,8 @@ namespace {
             rimap_local_ip_ptr[1] = ipf[1];
             rimap_local_ip_ptr[2] = ipf[2];
             rimap_local_ip_ptr[3] = ipf[3];
-            std::cerr << "resolved: " << int2ipv4(cur_interface_ip) << std::endl;
+
+            // std::cerr << "resolved: " << int2ipv4(cur_interface_ip) << std::endl;
             ++pAddr;
         }
 
@@ -84,7 +84,7 @@ void Socket::setReuseAddr(int sd) noexcept(false) {
 void Socket::connect(const std::string &host, int port) noexcept(false) {
     struct sockaddr_in addr = resolve(host.data(), port);
 
-    int sd = socket(/*Protocol Family*/PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    int sd = socket(/*Protocol Family*/AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (sd <= 0)
         throw std::runtime_error("error to create socket: " + std::string(strerror(errno)));
 
@@ -100,7 +100,7 @@ void Socket::connect(const std::string &host, int port) noexcept(false) {
 void Socket::connect(const std::string &host, int port, int timeout) noexcept(false) {
     struct sockaddr_in addr = resolve(host.data(), port);
 
-    int sd = socket(/*Protocol Family*/PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    int sd = socket(/*Protocol Family*/AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (sd <= 0)
         throw std::runtime_error("error to create socket: " + std::string(strerror(errno)));
 
@@ -184,7 +184,6 @@ namespace {
 
 }
 
-
 std::string Socket::recv() noexcept(false)
 {
     char buf[256]; /// задали размер буфера
@@ -210,10 +209,9 @@ std::string Socket::recv() noexcept(false)
     while (ret.back() == '\r' || ret.back() == '\n')
         ret.pop_back();
 
-    std::cerr << "client: " << m_Sd << ", recv: " << ret << " [" << n << " bytes]" << std::endl;
+//    std::cerr << "client: " << m_Sd << ", recv: " << ret << " [" << n << " bytes]" << std::endl;
     return ret;
 }
-
 
 std::string Socket::recvTimed(int timeout) noexcept(false) {
     fd_set read_fds;
@@ -236,7 +234,6 @@ bool Socket::hasData() noexcept(false) {
     if (n > 0) return true;
     return false;
 }
-
 
 void Socket::createServerSocket(uint32_t port, uint32_t listen_queue_size) noexcept(false)
 {
