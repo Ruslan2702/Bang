@@ -2,16 +2,15 @@
 #define UNTITLED_SITUATIONPARSER_H
 
 #include <iostream>
+#include "../logic/GameSituation.h"
+
+#include <regex>
+
 
 class SituationParser {
-private:
-    /*          */
 public:
-    void Parse(FILE* file_with_, std::vector<int>*role, std::vector<int>*card) {
-
-    }
-protected:
-    /*          */
+    GameSituation DecodeStep(std::string) noexcept(false);
+    std::string EncodeStep(GameSituation step) noexcept(false);
 };
 
 

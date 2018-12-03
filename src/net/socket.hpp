@@ -7,9 +7,7 @@
 #include <functional>
 
 
-
 std::string int2ipv4(uint32_t ip);
-
 
 class Socket {
 public:

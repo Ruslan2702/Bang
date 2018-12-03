@@ -8,16 +8,17 @@
 #include <vector>
 #include <string>
 #include "Card.h"
-#include "Gun.h"
+#include <iostream>
 
 struct PlayerInfo {
-    std::vector<std::string> cards_in_hand;
-    int HP;
-    std::string role;
-    std::string name;
-    int range = 1;
-    bool is_dead;
+  std::vector<Card> cards_in_hand;
+  int HP;
+  int MAX_HP;
+  std::string role;
+  std::string name;
+  int range = 1;
+  int position;
+  bool is_dead = false;
 };
 
-
-#endif //BANG_PLAYERINFO_H
+#endif // BANG_PLAYERINFO_H

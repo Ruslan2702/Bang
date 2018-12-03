@@ -34,16 +34,17 @@ namespace {
             rimap_local_ip_ptr[1] = ipf[1];
             rimap_local_ip_ptr[2] = ipf[2];
             rimap_local_ip_ptr[3] = ipf[3];
-//            std::cerr << "resolved: " << int2ipv4(cur_interface_ip) << std::endl;
+
+            // std::cerr << "resolved: " << int2ipv4(cur_interface_ip) << std::endl;
             ++pAddr;
         }
 
+        struct sockaddr_in addr;
+        memset(&addr, 0, sizeof(addr));
+        addr.sin_family = /*Address Family*/AF_INET;        // only AF_INET !
+        addr.sin_port = htons(port);
+        memcpy(&addr.sin_addr, hp->h_addr, hp->h_length);
 
-    struct sockaddr_in addr;
-    memset(&addr, 0, sizeof(addr)); /// выделяем - зануляем
-    addr.sin_family = /*Address Family*/AF_INET;        // only AF_INET !
-    addr.sin_port = htons(port);
-    memcpy(&addr.sin_addr, hp->h_addr, hp->h_length); /// указываем адрес тачки
 
         return addr;
     }
@@ -211,7 +212,6 @@ std::string Socket::recv() noexcept(false)
 //    std::cerr << "client: " << m_Sd << ", recv: " << ret << " [" << n << " bytes]" << std::endl;
     return ret;
 }
-
 
 std::string Socket::recvTimed(int timeout) noexcept(false) {
     fd_set read_fds;
