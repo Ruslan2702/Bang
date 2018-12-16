@@ -13,11 +13,11 @@ const bool operator == (GameSituation left_situaiton, GameSituation right_situai
     return false; /// gummy
 }
 
-const bool operator == (Card left_card, Card right_card) {
-    if(left_card.name_card != right_card.name_card)
-        return false;
-    return true;
-}
+//const bool operator == (Card left_card, Card right_card) {
+//    if(left_card.name_card != right_card.name_card)
+//        return false;
+//    return true;
+//}
 
 const bool operator == (Step left_step, Step right_step) {
 
@@ -52,8 +52,6 @@ TEST(TestsForStepParser, simple_decode_01) {
     StepParser parser;
 
     Step real_step = parser.DecodeStep(row_str);
-
-    std::cout << real_step.action << " " << expected.action << std::endl;
 
     EXPECT_TRUE(real_step == expected);
 }

@@ -374,7 +374,7 @@ TEST_F(TestGameSituation, cards_count_02) {
   auto HP = static_cast<size_t>(player->HP);
   EXPECT_FALSE(HP >= after_cards_count);
 }
-
+1
 TEST_F(TestGameSituation, cards_count_03) {
   /// count is TRUE
   int id_player = 0;
