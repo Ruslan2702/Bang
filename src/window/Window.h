@@ -19,13 +19,17 @@ class Window {
   static Window& getInstance();
 
   void HelloMessage(std::string& host, int* port);
-  void YouAreConnected(const GameSituation&);
+  void YouAreConnected(char playersNum, char myID);
   void GameInfoMessage();
-  void UpgradeWindowByNewStep();
+  void UpgradeWindowByNewStep(const GameSituation& newGame);
+  bool GameOver();
+  bool YourStepTime();
+  void EndMessage();
   std::string YourTurn();
+  int currentPlayer;
 
 
-private:
+ private:
   Window();
   ~Window();
 
@@ -41,7 +45,6 @@ private:
   GameSituation gameSituation;
   Step lastStep;
 
-  int currentPlayer;
   int sheriff;
   int id;
 };

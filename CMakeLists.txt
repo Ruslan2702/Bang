@@ -65,6 +65,7 @@ add_executable(client
         src/net/main_client.cpp
         src/net/socket.cpp
         src/window/Window.cpp
+        src/parsers/SituationParser.cpp
         ${INSTALL_NCURSES})
 
 add_executable(tests_situation
@@ -85,6 +86,7 @@ add_executable(tests_parsers
         )
 target_link_libraries(tests_parsers gtest)
 
+
 add_executable(test_01
         src/parsers/tests/TestsForParsers.cpp
         src/logic/Step.h
@@ -93,17 +95,20 @@ add_executable(test_01
         )
 target_link_libraries(test_01 gtest)
 
-add_executable(db
-        src/BD/checker.cpp
-        src/BD/DataBaseManager.h
-        src/BD/DataBaseManager.cpp
-)
+#add_executable(db
+#        src/BD/checker.cpp
+#        src/BD/DataBaseManager.h
+#        src/BD/DataBaseManager.cpp
+#)
 
-add_executable(parser_dec
-        src/parsers/checker.cpp
-        src/parsers/CardsParser.cpp
-        src/parsers/CardsParser.h
-)
+#add_executable(parser_dec
+#        src/parsers/checker.cpp
+#        src/parsers/CardsParser.cpp
+#        src/parsers/CardsParser.h
+#)
+
+#add_executable(json
+#        src/parsers/nlohmann.cpp)
 
 if(APPLE)
     add_custom_command(TARGET client PRE_BUILD COMMAND cd /tmp/ &&
