@@ -20,7 +20,7 @@ public:
 
 
     void JoinTheGame();
-    void GetFirstMessage();
+    void GetFirstMessage(char* nowPlayers, char* myID);
     std::string GetGameSituation();
     void SendNewStep(const std::string& command);
     void DrowWindow();

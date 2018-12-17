@@ -55,25 +55,25 @@ void Window::HelloMessage(std::string& host, int* port) {
     fin.close();
 }
 
-void Window::YouAreConnected(const GameSituation& game) {
-    gameSituation = game;
+void Window::YouAreConnected(char playersNum, char myID) {
     currentPlayer = 0;
-    id = 5; // ПОЛУЧАЕМ С СЕРВЕРА
-    for (int i = 0; i < game.player_list.size(); ++i) {
-      if (game.player_list[i]->role == "SHERIFF") {
-        sheriff = i;
-        break;
-      }
-    }
-
+    id = myID; // ПОЛУЧАЕМ С СЕРВЕРА
 
     sheriff = 3; // ОТЛАДКА
-    printw("\nNow here are 3/6 players. Please wait");
+    std::string out = "\nNow here are " + std::to_string(playersNum) + "/6 players. Please wait";
+    printw(out.c_str());
     refresh();
     msleep(2000);
 }
 
 void Window::GameInfoMessage() {
+    for (int i = 0; i < gameSituation.player_list.size(); ++i) {
+      if (gameSituation.player_list[i]->role == "SHERIFF") {
+        sheriff = i;
+        break;
+      }
+    }
+
     clear();
     mvwprintw(stdscr, 0, 0, "GameID: 1442\n\n");
 
@@ -98,7 +98,7 @@ void Window::GameInfoMessage() {
       printw("\n");
     }
 
-    printw("\n\nLast step:\n Player1: 'BANG' ->  Player2");
+    printw("\n\nLast step:\n JOHN: 'BANG' ->  Player2");
 
     mvwprintw(stdscr, 1, cols / 2, "YOU:");
     mvwprintw(stdscr, 2, cols / 2 + 3, "#NAME: %s", gameSituation.player_list[id]->name.c_str());
@@ -108,7 +108,7 @@ void Window::GameInfoMessage() {
 
     mvwprintw(stdscr, 6, cols / 2 + 3, "#CARDS:");
     for (int i = 0; i < gameSituation.player_list[id]->cards_in_hand.size(); ++i) {
-      mvwprintw(stdscr, 7 + i, cols / 2 + 6, "%s", gameSituation.player_list[id]->cards_in_hand[i].c_str());
+      mvwprintw(stdscr, 7 + i, cols / 2 + 6, "%s", gameSituation.player_list[id]->cards_in_hand[i].name_card.c_str());
     }
 
 //    printw("Your name: Joe\n");
@@ -120,9 +120,10 @@ void Window::GameInfoMessage() {
     refresh();
 }
 
-void Window::UpgradeWindowByNewStep() {
+void Window::UpgradeWindowByNewStep(const GameSituation& newGame) {
+  gameSituation = newGame;
   GameInfoMessage();
-  printw("Last step:\n Player1: 'BANG' ->  Player2");
+  printw("Last step:\n : 'BANG' ->  Player2");
   refresh();
   msleep(2000);
 }
@@ -131,7 +132,7 @@ std::string Window::YourTurn() {
   std::string card = CardKeyboard();
   std::string action = ActionKeyboard(card);
   std::string toPlayer;
-  if (action == "Use") {
+  if (action == "USE") {
     toPlayer = PlayerKeyboard(card, action);
     GameInfoMessage();
     printw("Your step:\n '%s' ->  %s", card.c_str(), toPlayer.c_str());
@@ -150,10 +151,15 @@ std::string Window::CardKeyboard() {
 //  for (const auto card : gameSituation.player_list[ID]->cards_in_hand) {
 //    items.push_back(card);
 //  }
+  std::vector<std::string> cards;
+  for (const auto& card_struct : gameSituation.player_list[id]->cards_in_hand) {
+    cards.emplace_back(card_struct.name_card);
+  }
+
   std::string msg = "Your turn! Select a card";
   return gameSituation.player_list[id]->cards_in_hand[
-      PrintKeyboardAndGetChoise(gameSituation.player_list[id]->cards_in_hand, msg)
-      ];
+      PrintKeyboardAndGetChoise(cards, msg)
+      ].name_card;
 }
 
 std::string Window::ActionKeyboard(std::string selectedCard) {
@@ -219,3 +225,21 @@ Window &Window::getInstance() {
   static Window instance;
   return instance;
 }
+
+bool Window::GameOver() {
+  return gameSituation.is_end;
+}
+
+bool Window::YourStepTime() {
+  return currentPlayer == id;
+}
+
+void Window::EndMessage() {
+  printw("THE GAME IS OVER!");
+}
+
+
+
+//void Window::UpgradeWindowByNewStep(const GameSituation& newGame) {
+//  gameSituation = newGame;
+//}

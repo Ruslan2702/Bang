@@ -57,6 +57,7 @@ add_executable(client
         src/net/main_client.cpp
         src/net/socket.cpp
         src/window/Window.cpp
+        src/parsers/SituationParser.cpp
         ${INSTALL_NCURSES})
 
 add_executable(tests_situation
