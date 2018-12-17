@@ -99,6 +99,12 @@ add_executable(db
         src/BD/DataBaseManager.cpp
 )
 
+add_executable(parser_dec
+        src/parsers/checker.cpp
+        src/parsers/CardsParser.cpp
+        src/parsers/CardsParser.h
+)
+
 if(APPLE)
     add_custom_command(TARGET client PRE_BUILD COMMAND cd /tmp/ &&
             curl -O ftp://ftp.gnu.org/gnu/ncurses/ncurses-6.1.tar.gz &&
