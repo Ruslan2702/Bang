@@ -6,9 +6,15 @@ SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(BINDIR ${CMAKE_SOURCE_DIR}/bin)
 MAKE_DIRECTORY(${BINDIR})
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${BINDIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${BINDIR})
 set(CMAKE_CXX_FLAGS "-lncurses")
+
+# Добавляю новые флаги для posgreesql -L/usr/local/Cellar/postgresql/11.1/include -lpq
+if(APPLE)
+    set(CMAKE_CXX_FLAGS "-lncurses -L/usr/local/Cellar/postgresql/11.1/include -lpq")
+endif(APPLE)
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
@@ -46,6 +52,8 @@ endif()
 add_executable(tests tests/first_test.cpp)
 target_link_libraries(tests gtest_main)
 
+
+
 add_executable(server
         src/net/Server.cpp
         src/net/socket.cpp
@@ -78,8 +86,29 @@ add_executable(tests_parsers
         )
 target_link_libraries(tests_parsers gtest)
 
-add_executable(json
-        src/parsers/nlohmann.cpp)
+
+add_executable(test_01
+        src/parsers/tests/TestsForParsers.cpp
+        src/logic/Step.h
+        src/logic/Card.h
+        src/logic/GameSituation.h
+        )
+target_link_libraries(test_01 gtest)
+
+#add_executable(db
+#        src/BD/checker.cpp
+#        src/BD/DataBaseManager.h
+#        src/BD/DataBaseManager.cpp
+#)
+
+#add_executable(parser_dec
+#        src/parsers/checker.cpp
+#        src/parsers/CardsParser.cpp
+#        src/parsers/CardsParser.h
+#)
+
+#add_executable(json
+#        src/parsers/nlohmann.cpp)
 
 if(APPLE)
     add_custom_command(TARGET client PRE_BUILD COMMAND cd /tmp/ &&
@@ -92,6 +121,6 @@ if(UNIX AND NOT APPLE)
     add_custom_command(TARGET client PRE_BUILD COMMAND sudo apt-get install libncurses5-dev libncursesw5-dev)
 endif(UNIX AND NOT APPLE)
 
-find_package(Curses REQUIRED)
-include_directories(${CURSES_INCLUDE_DIR})
-target_link_libraries(client ${CURSES_LIBRARIES})
+#find_package(Curses REQUIRED)
+#include_directories(${CURSES_INCLUDE_DIR})
+#target_link_libraries(client ${CURSES_LIBRARIES})

@@ -2,24 +2,39 @@
 #define GAME_LOGIC_CARDSPARSER_H
 
 #include <iostream>
+#include <map>
+#include <string>
+#include "../logic/Card.h"
+#include <vector>
 
-/*
- * class Cards_Parser {
-private:
-
+class GetCardsInterface {
 public:
-void Parse(FILE* file_with_, std::vector<int>*role, std::vector<int>*card) {
+    virtual ~GetCardsInterface() = default;
 
-}
-protected:
-
+    virtual std::vector<Card> GetCardsDec() = 0;
 };
- */
 
-class CardParser {
+
+class CardParserTxt : public GetCardsInterface {
 public:
-    Card CardParser::DecodeCard(std::string str)
-    std::string CardParser::EncodeCard(Card card)
+    CardParserTxt() = default;
+    ~CardParserTxt() = default;
+
+     std::vector<Card> GetCardsDec();
+};
+
+class CardParserConst : public GetCardsInterface {
+public:
+    CardParserConst() = default;
+    ~CardParserConst() = default;
+
+    std::vector<Card> GetCardsDec();
+
+private:
+    int count_card = 90;
+    int count_miss = 20;
+    int count_beer = 10;
+    int count_bang = 60;
 };
 
 
