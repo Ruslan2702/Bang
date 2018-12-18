@@ -374,7 +374,7 @@ TEST_F(TestGameSituation, cards_count_02) {
   auto HP = static_cast<size_t>(player->HP);
   EXPECT_FALSE(HP >= after_cards_count);
 }
-1
+
 TEST_F(TestGameSituation, cards_count_03) {
   /// count is TRUE
   int id_player = 0;
@@ -396,13 +396,6 @@ TEST_F(TestGameSituation, cards_count_04) {
 
   EXPECT_FALSE(manager.check_count_cards(player));
 }
-
-/*
- * Осталось довесить индекс карт, с корорыми взаимодействуем, чтобы кажждый раз не искать их в колоде
- * то есть почти во все функции с картами нужно совать cards_id! очень важно, а то не заработает
- *
- * остались тесты работы парсера и клиента
- */
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);

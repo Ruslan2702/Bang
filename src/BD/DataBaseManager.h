@@ -9,21 +9,20 @@
 #include "../logic/Step.h"
 #include <queue>
 
+std::string GetDataBaseConf();
+
 class DataBaseManager {
 public:
-    DataBaseManager() = default;
-    explicit DataBaseManager(const std::string &host,
-                             const std::string &port,
-                             const std::string &dbname,
-                             const std::string &connect_timeout,
-                             const std::string &password,
-                             const std::string &user,
-                             const std::string &step_stable);
+    explicit DataBaseManager();
+
     ~DataBaseManager();
 
     void InsertStep(Step step);
+    void CreateTable();
+    int GetLastGameId();
+    void WriteFutureIndexGame();
 
-public: /// это только пока
+private:
     std::string StepToSQLQuery(Step step);
 
     PGconn     *conn;

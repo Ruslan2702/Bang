@@ -14,12 +14,10 @@ int MAX_CONNECT = 2;
 int TIME_TO_MOVE_SEC = 30;
 int TIME_TO_MOVE_MSEC = 0;
 
-void Server::insert_step_in_db(std::string const &step) noexcept(false) {
-    return; /// пока база не прикручена
-}
+void Server::send_end_msg(std::string winner) noexcept(false) {
+    std::string answer = winner + "- WIN!";
 
-void Server::send_end_msg() noexcept(false) {
-    for (auto client : clients) client->send("GAME END WIN ?????? \n");
+    for (auto client : clients) client->send(answer);
 }
 
 Server::Server(std::string const  &port, int const &queue_size) noexcept(false) {
@@ -36,19 +34,22 @@ void Server::send_hellow_msg() {
     }
 }
 
-void Server::send_current_situation(GameSituation const &curren_stuation) {
-    return;
+void Server::send_current_situation(std::string const &msg) {
+    for (auto client : clients) client->send(msg);
 }
 
 void Server::client_work(std::shared_ptr<Socket> client) {
-    return;
 }
 
 void Server::get_players(int MAX_CONNECT) {
     for (int i = 0; i < MAX_CONNECT; ++i) {
-            std::shared_ptr<Socket> client = server_socket.accept();
-            clients.push_back(client);
-        }
+        std::shared_ptr<Socket> client = server_socket.accept();
+        clients.push_back(client);
+
+        std::string id_msg = std::to_string(i) + " " + std::to_string(i + 1) + "\n" ;
+
+        client->send(id_msg);
+    }
 }
 
 void Server::send_everybode_step(std::string step) noexcept(false) {
@@ -59,53 +60,8 @@ std::string Server::get_step(int index_client) {
     clients[index_client]->setRcvTimeout(TIME_TO_MOVE_SEC, TIME_TO_MOVE_MSEC);
 
     std::string line = clients[index_client]->recv();
-//    std::cout << line << std::endl;
     return line;
 }
 
 std::string Server::upgrade_situation(Step const &step, GameManager &game_manager, GameSituation &current_sitution) {
-    return "";
-}
-
-int main(int argc, char *argv[]) /// запуск сервера
-{
-    try
-    {
-        SituationParser situationParser();
-        StepParser stepParser();
-        GameManager gameManager;
-
-        Server server("5555", MAX_CONNECT);
-
-        server.get_players(MAX_CONNECT);
-        std::cout << "THERE ARE " << MAX_CONNECT << " CON" << std::endl;
-        GameSituation current_sitution;
-
-        server.send_hellow_msg();
-        server.send_current_situation(current_sitution);
-
-        int game_move = 0;
-        std::string WINNER;
-        while(WINNER == "")
-        {
-            std::string step = server.get_step(game_move % MAX_CONNECT);
-            /// проверка валидности степа
-            Step valid_step; /// dummy
-            WINNER = server.upgrade_situation(valid_step, gameManager, current_sitution);
-
-            server.send_everybode_step(step);
-            server.send_current_situation(current_sitution);
-            server.insert_step_in_db(step);
-
-            ++game_move;
-        }
-
-        server.send_end_msg();
-    }
-    catch(const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
-
-    return 0;
 }

@@ -1,6 +1,7 @@
 #include "SituationParser.h"
 #include "../../include/json.hpp"
 #include "../logic/PlayerInfo.h"
+#include <vector>
 
 
 GameSituation SituationParser::DecodeStep(std::string string_game) noexcept(false) {
@@ -22,7 +23,9 @@ GameSituation SituationParser::DecodeStep(std::string string_game) noexcept(fals
 
     json cards = json_game["player_list"][i][player_id]["cards_in_hand"];
     for (const std::string& element : cards[0]) {
-      player->cards_in_hand.push_back({element, " "});
+      Card mcard;
+      mcard.name_card = element;
+      player->cards_in_hand.emplace_back(mcard);
     }
 
     game.player_list.push_back(player);

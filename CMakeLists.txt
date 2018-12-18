@@ -11,7 +11,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${BINDIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${BINDIR})
 set(CMAKE_CXX_FLAGS "-lncurses")
 
-# Добавляю новые флаги для posgreesql -L/usr/local/Cellar/postgresql/11.1/include -lpq
+## флаги для posgreesql -L/usr/local/Cellar/postgresql/11.1/include -lpq
 if(APPLE)
     set(CMAKE_CXX_FLAGS "-lncurses -L/usr/local/Cellar/postgresql/11.1/include -lpq")
 endif(APPLE)
@@ -55,9 +55,13 @@ target_link_libraries(tests gtest_main)
 
 
 add_executable(server
+        src/net/main_server.cpp
         src/net/Server.cpp
         src/net/socket.cpp
         src/logic/GameManager.cpp
+        src/parsers/SituationParser.cpp
+        src/BD/DataBaseManager.cpp
+        include/json.hpp
         )
 
 add_executable(client
@@ -95,21 +99,6 @@ add_executable(test_01
         )
 target_link_libraries(test_01 gtest)
 
-#add_executable(db
-#        src/BD/checker.cpp
-#        src/BD/DataBaseManager.h
-#        src/BD/DataBaseManager.cpp
-#)
-
-#add_executable(parser_dec
-#        src/parsers/checker.cpp
-#        src/parsers/CardsParser.cpp
-#        src/parsers/CardsParser.h
-#)
-
-#add_executable(json
-#        src/parsers/nlohmann.cpp)
-
 if(APPLE)
     add_custom_command(TARGET client PRE_BUILD COMMAND cd /tmp/ &&
             curl -O ftp://ftp.gnu.org/gnu/ncurses/ncurses-6.1.tar.gz &&
@@ -120,7 +109,3 @@ endif(APPLE)
 if(UNIX AND NOT APPLE)
     add_custom_command(TARGET client PRE_BUILD COMMAND sudo apt-get install libncurses5-dev libncursesw5-dev)
 endif(UNIX AND NOT APPLE)
-
-#find_package(Curses REQUIRED)
-#include_directories(${CURSES_INCLUDE_DIR})
-#target_link_libraries(client ${CURSES_LIBRARIES})

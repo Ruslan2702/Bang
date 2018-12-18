@@ -41,7 +41,7 @@ std::vector<Card> CardParserConst::GetCardsDec() {
 std::vector<Card> CardParserTxt::GetCardsDec() {
     std::string line;
 
-    std::ifstream in("src/conf/cards.txt"); // окрываем файл для чтения
+    std::ifstream in("src/conf/cards.txt");
     std::regex re_total("total - (\\d+)");
     std::regex re_miss("MISS - (\\d+)");
     std::regex re_bang("BANG - (\\d+)");
