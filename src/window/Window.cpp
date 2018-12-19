@@ -16,8 +16,6 @@ const int LABEL_LENGTH = 31;
 
 Window::Window() {
     initscr();
-//    WINDOW* win = newwin(30, 50, 0, 0);
-
 
     int nRow = 0;
     int nCol = 0;
@@ -57,9 +55,9 @@ void Window::HelloMessage(std::string& host, int* port) {
 
 void Window::YouAreConnected(char playersNum, char myID) {
     currentPlayer = 0;
-    id = myID; // ПОЛУЧАЕМ С СЕРВЕРА
+    id = myID;
 
-    sheriff = 3; // ОТЛАДКА
+    sheriff = 3;
     std::string out = "\nNow here are " + std::to_string(playersNum) + "/6 players. Please wait";
     printw(out.c_str());
     refresh();
@@ -110,12 +108,6 @@ void Window::GameInfoMessage() {
     for (int i = 0; i < gameSituation.player_list[id]->cards_in_hand.size(); ++i) {
       mvwprintw(stdscr, 7 + i, cols / 2 + 6, "%s", gameSituation.player_list[id]->cards_in_hand[i].name_card.c_str());
     }
-
-//    printw("Your name: Joe\n");
-//    printw("Your role: Sheriff\n");
-//    printw("Your health: 4\n");
-//    printw("Your gun power: 1\n\n\n\n");
-//    msleep(2000);
     printw("\n\n\n\n");
     refresh();
 }
@@ -147,10 +139,6 @@ std::string Window::YourTurn() {
 }
 
 std::string Window::CardKeyboard() {
-//  std::vector<std::string> items;
-//  for (const auto card : gameSituation.player_list[ID]->cards_in_hand) {
-//    items.push_back(card);
-//  }
   std::vector<std::string> cards;
   for (const auto& card_struct : gameSituation.player_list[id]->cards_in_hand) {
     cards.emplace_back(card_struct.name_card);
@@ -169,7 +157,6 @@ std::string Window::ActionKeyboard(std::string selectedCard) {
 }
 
 std::string Window::PlayerKeyboard(std::string selectedCard, std::string selectedAction) {
-//  std::vector<std::string> items{"Player 1", "Player 2", "Player 4", "Player 5", "Player 6",};
   std::vector<std::string> players;
   for (int i = 0; i < gameSituation.player_list.size(); ++i) {
     if (i == id) {
@@ -195,27 +182,24 @@ int Window::PrintKeyboardAndGetChoise(const std::vector<std::string> &items,
     GameInfoMessage();
     printw("%s\n", msg.c_str());
     for (int i = 0; i < items.size(); i++) {
-      if ( i == choice ) //Если текущий элемент совпадает с выбором пользователя
-        addch('>'); //Выводим указатель
+      if ( i == choice ) 
+        addch('>'); 
       else
-        addch(' '); //Иначе выводим " ", для равновесия
+        addch(' '); 
 
       printw("%s\n", items[i].c_str());
     }
 
     switch (getch()) {
       case KEY_UP:
-        if (choice) //Если возможно, переводим указатель вверх
+        if (choice) 
           choice--;
         break;
       case KEY_DOWN:
-        if (choice != items.size() - 1) //Если возможно, переводим указатель вниз
+        if (choice != items.size() - 1) 
           choice++;
         break;
       case 10:
-//        printw("\nYour choise is: %s", items[choice].c_str());
-//        refresh();
-//        msleep(2000);
         return choice;
     }
   }
@@ -238,8 +222,3 @@ void Window::EndMessage() {
   printw("THE GAME IS OVER!");
 }
 
-
-
-//void Window::UpgradeWindowByNewStep(const GameSituation& newGame) {
-//  gameSituation = newGame;
-//}
