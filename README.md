@@ -1,6 +1,6 @@
 # Bang THE GAME
 
-![alt text](github.com/Ruslan2702/Bang/blob/development/screenshot.png)
+![alt text](screenshot.png)
 
 1. Начало игры
 Каждому игроку раздаются карты (const роль,const имя, оружие)*. На карте имени указано количество max HP. А так же раздаются карты на руки, количество карт(Beer, Bang, Miss) = HP, только в начале.
